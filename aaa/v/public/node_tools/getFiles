@@ -1,0 +1,18 @@
+const fs = require('fs');
+const path = require('path');
+
+
+// 获取制定文件夹下所有文件名
+const filePath = './lantu/测试/cai';
+// const filePath = './lantu';
+
+// 异步读取目录
+fs.readdir(filePath, (err, files) => {
+    if (err) {
+        console.error('Error reading directory:', err);
+        return;
+    }
+    for(const i in files){
+        console.log(files[i].split('.')[0]);
+    }
+});
