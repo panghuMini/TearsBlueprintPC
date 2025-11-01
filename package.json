@@ -2,10 +2,14 @@
   "name": "tearsblueprintpc",
   "version": "1.0.0",
   "main": "index.js",
+  "productName": "TearsBlueprintPC",
   "scripts": {
+    "prestart": "cd vue2 && npm run build",
     "start": "electron-forge start",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "prepackage": "cd vue2 && npm run build",
     "package": "electron-forge package",
+    "premake": "cd vue2 && npm run build",
     "make": "electron-forge make"
   },
   "author": "PanghuMini",
@@ -23,6 +27,8 @@
     "electron": "^39.0.0"
   },
   "dependencies": {
-    "electron-squirrel-startup": "^1.0.1"
+    "electron-squirrel-startup": "^1.0.1",
+    "adm-zip": "^0.5.12",
+    "fs-extra": "^11.2.0"
   }
 }

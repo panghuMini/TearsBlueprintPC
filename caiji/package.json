@@ -1,0 +1,15 @@
+{
+  "name": "hyruleworks-crawler",
+  "version": "1.0.0",
+  "description": "采集hyruleworks.com蓝图数据",
+  "main": "crawler.js",
+  "scripts": {
+    "start": "node crawler.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0-rc.12",
+    "sharp": "^0.32.6",
+    "fs-extra": "^11.1.1"
+  }
+}

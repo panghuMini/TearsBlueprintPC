@@ -1,0 +1,7 @@
+帮我在F:\TearsBlueprint\TearsBlueprintPC\caiji 这个文件夹，加一个js，利用nodejs
+
+将F:\TearsBlueprint\TearsBlueprintPC\caiji\99外网采集的蓝图，因为太多没时间测分类\img 这里面的图片
+
+全部处理为放在 320px * 180px的透明画布里，水平垂直居中，再保存为png覆盖原图片
+
+如果需要安装什么新以来，就用npm安装。
