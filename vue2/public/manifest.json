@@ -446,6 +446,742 @@
       }
     ]
   },
+  "31哥布林怪": {
+    "name": "31哥布林怪",
+    "type": "category",
+    "files": [
+      {
+        "name": "波克布林(装甲)",
+        "cai": "31哥布林怪/cai/波克布林(装甲).cai",
+        "img": "31哥布林怪/img/%E6%B3%A2%E5%85%8B%E5%B8%83%E6%9E%97(%E8%A3%85%E7%94%B2).png"
+      },
+      {
+        "name": "波克布林",
+        "cai": "31哥布林怪/cai/波克布林.cai",
+        "img": "31哥布林怪/img/%E6%B3%A2%E5%85%8B%E5%B8%83%E6%9E%97.png"
+      },
+      {
+        "name": "白银波克布林(装甲)",
+        "cai": "31哥布林怪/cai/白银波克布林(装甲).cai",
+        "img": "31哥布林怪/img/%E7%99%BD%E9%93%B6%E6%B3%A2%E5%85%8B%E5%B8%83%E6%9E%97(%E8%A3%85%E7%94%B2).png"
+      },
+      {
+        "name": "白银波克布林",
+        "cai": "31哥布林怪/cai/白银波克布林.cai",
+        "img": "31哥布林怪/img/%E7%99%BD%E9%93%B6%E6%B3%A2%E5%85%8B%E5%B8%83%E6%9E%97.png"
+      },
+      {
+        "name": "白银莫力布林",
+        "cai": "31哥布林怪/cai/白银莫力布林.cai",
+        "img": "31哥布林怪/img/%E7%99%BD%E9%93%B6%E8%8E%AB%E5%8A%9B%E5%B8%83%E6%9E%97.png"
+      },
+      {
+        "name": "白银霍拉布林",
+        "cai": "31哥布林怪/cai/白银霍拉布林.cai",
+        "img": "31哥布林怪/img/%E7%99%BD%E9%93%B6%E9%9C%8D%E6%8B%89%E5%B8%83%E6%9E%97.png"
+      },
+      {
+        "name": "白银首领波克布林",
+        "cai": "31哥布林怪/cai/白银首领波克布林.cai",
+        "img": "31哥布林怪/img/%E7%99%BD%E9%93%B6%E9%A6%96%E9%A2%86%E6%B3%A2%E5%85%8B%E5%B8%83%E6%9E%97.png"
+      },
+      {
+        "name": "莫力布林",
+        "cai": "31哥布林怪/cai/莫力布林.cai",
+        "img": "31哥布林怪/img/%E8%8E%AB%E5%8A%9B%E5%B8%83%E6%9E%97.png"
+      },
+      {
+        "name": "蓝色波克布林(装甲)",
+        "cai": "31哥布林怪/cai/蓝色波克布林(装甲).cai",
+        "img": "31哥布林怪/img/%E8%93%9D%E8%89%B2%E6%B3%A2%E5%85%8B%E5%B8%83%E6%9E%97(%E8%A3%85%E7%94%B2).png"
+      },
+      {
+        "name": "蓝色波克布林",
+        "cai": "31哥布林怪/cai/蓝色波克布林.cai",
+        "img": "31哥布林怪/img/%E8%93%9D%E8%89%B2%E6%B3%A2%E5%85%8B%E5%B8%83%E6%9E%97.png"
+      },
+      {
+        "name": "蓝色莫力布林",
+        "cai": "31哥布林怪/cai/蓝色莫力布林.cai",
+        "img": "31哥布林怪/img/%E8%93%9D%E8%89%B2%E8%8E%AB%E5%8A%9B%E5%B8%83%E6%9E%97.png"
+      },
+      {
+        "name": "蓝色霍拉布林",
+        "cai": "31哥布林怪/cai/蓝色霍拉布林.cai",
+        "img": "31哥布林怪/img/%E8%93%9D%E8%89%B2%E9%9C%8D%E6%8B%89%E5%B8%83%E6%9E%97.png"
+      },
+      {
+        "name": "蓝色首领波克布林",
+        "cai": "31哥布林怪/cai/蓝色首领波克布林.cai",
+        "img": "31哥布林怪/img/%E8%93%9D%E8%89%B2%E9%A6%96%E9%A2%86%E6%B3%A2%E5%85%8B%E5%B8%83%E6%9E%97.png"
+      },
+      {
+        "name": "霍拉布林",
+        "cai": "31哥布林怪/cai/霍拉布林.cai",
+        "img": "31哥布林怪/img/%E9%9C%8D%E6%8B%89%E5%B8%83%E6%9E%97.png"
+      },
+      {
+        "name": "首领波克布林",
+        "cai": "31哥布林怪/cai/首领波克布林.cai",
+        "img": "31哥布林怪/img/%E9%A6%96%E9%A2%86%E6%B3%A2%E5%85%8B%E5%B8%83%E6%9E%97.png"
+      },
+      {
+        "name": "骸骨波克布林",
+        "cai": "31哥布林怪/cai/骸骨波克布林.cai",
+        "img": "31哥布林怪/img/%E9%AA%B8%E9%AA%A8%E6%B3%A2%E5%85%8B%E5%B8%83%E6%9E%97.png"
+      },
+      {
+        "name": "骸骨莫力布林",
+        "cai": "31哥布林怪/cai/骸骨莫力布林.cai",
+        "img": "31哥布林怪/img/%E9%AA%B8%E9%AA%A8%E8%8E%AB%E5%8A%9B%E5%B8%83%E6%9E%97.png"
+      },
+      {
+        "name": "黑色波克布林(装甲)",
+        "cai": "31哥布林怪/cai/黑色波克布林(装甲).cai",
+        "img": "31哥布林怪/img/%E9%BB%91%E8%89%B2%E6%B3%A2%E5%85%8B%E5%B8%83%E6%9E%97(%E8%A3%85%E7%94%B2).png"
+      },
+      {
+        "name": "黑色波克布林",
+        "cai": "31哥布林怪/cai/黑色波克布林.cai",
+        "img": "31哥布林怪/img/%E9%BB%91%E8%89%B2%E6%B3%A2%E5%85%8B%E5%B8%83%E6%9E%97.png"
+      },
+      {
+        "name": "黑色莫力布林",
+        "cai": "31哥布林怪/cai/黑色莫力布林.cai",
+        "img": "31哥布林怪/img/%E9%BB%91%E8%89%B2%E8%8E%AB%E5%8A%9B%E5%B8%83%E6%9E%97.png"
+      },
+      {
+        "name": "黑色霍拉布林",
+        "cai": "31哥布林怪/cai/黑色霍拉布林.cai",
+        "img": "31哥布林怪/img/%E9%BB%91%E8%89%B2%E9%9C%8D%E6%8B%89%E5%B8%83%E6%9E%97.png"
+      },
+      {
+        "name": "黑色首领波克布林",
+        "cai": "31哥布林怪/cai/黑色首领波克布林.cai",
+        "img": "31哥布林怪/img/%E9%BB%91%E8%89%B2%E9%A6%96%E9%A2%86%E6%B3%A2%E5%85%8B%E5%B8%83%E6%9E%97.png"
+      }
+    ]
+  },
+  "32Boss": {
+    "name": "32Boss",
+    "type": "category",
+    "files": [
+      {
+        "name": "古栗欧克",
+        "cai": "32Boss/cai/古栗欧克.cai",
+        "img": "32Boss/img/%E5%8F%A4%E6%A0%97%E6%AC%A7%E5%85%8B.png"
+      },
+      {
+        "name": "可盖大人",
+        "cai": "32Boss/cai/可盖大人.cai",
+        "img": "32Boss/img/%E5%8F%AF%E7%9B%96%E5%A4%A7%E4%BA%BA.png"
+      },
+      {
+        "name": "史莱姆莱克",
+        "cai": "32Boss/cai/史莱姆莱克.cai",
+        "img": "32Boss/img/%E5%8F%B2%E8%8E%B1%E5%A7%86%E8%8E%B1%E5%85%8B.png"
+      },
+      {
+        "name": "吉波得女王",
+        "cai": "32Boss/cai/吉波得女王.cai",
+        "img": "32Boss/img/%E5%90%89%E6%B3%A2%E5%BE%97%E5%A5%B3%E7%8E%8B.png"
+      },
+      {
+        "name": "污泥莱克莱克",
+        "cai": "32Boss/cai/污泥莱克莱克.cai",
+        "img": "32Boss/img/%E6%B1%A1%E6%B3%A5%E8%8E%B1%E5%85%8B%E8%8E%B1%E5%85%8B.png"
+      },
+      {
+        "name": "玛尔古斯",
+        "cai": "32Boss/cai/玛尔古斯.cai",
+        "img": "32Boss/img/%E7%8E%9B%E5%B0%94%E5%8F%A4%E6%96%AF.png"
+      },
+      {
+        "name": "莫拉吉亚",
+        "cai": "32Boss/cai/莫拉吉亚.cai",
+        "img": "32Boss/img/%E8%8E%AB%E6%8B%89%E5%90%89%E4%BA%9A.png"
+      },
+      {
+        "name": "被侵占的魔像",
+        "cai": "32Boss/cai/被侵占的魔像.cai",
+        "img": "32Boss/img/%E8%A2%AB%E4%BE%B5%E5%8D%A0%E7%9A%84%E9%AD%94%E5%83%8F.png"
+      },
+      {
+        "name": "魔王盖侬(第二形态)",
+        "cai": "32Boss/cai/魔王盖侬(第二形态).cai",
+        "img": "32Boss/img/%E9%AD%94%E7%8E%8B%E7%9B%96%E4%BE%AC(%E7%AC%AC%E4%BA%8C%E5%BD%A2%E6%80%81).png"
+      },
+      {
+        "name": "魔王盖侬",
+        "cai": "32Boss/cai/魔王盖侬.cai",
+        "img": "32Boss/img/%E9%AD%94%E7%8E%8B%E7%9B%96%E4%BE%AC.png"
+      }
+    ]
+  },
+  "33丘丘胶和蝙蝠": {
+    "name": "33丘丘胶和蝙蝠",
+    "type": "category",
+    "files": [
+      {
+        "name": "中丘丘胶",
+        "cai": "33丘丘胶和蝙蝠/cai/中丘丘胶.cai",
+        "img": "33丘丘胶和蝙蝠/img/%E4%B8%AD%E4%B8%98%E4%B8%98%E8%83%B6.png"
+      },
+      {
+        "name": "中冰丘丘胶",
+        "cai": "33丘丘胶和蝙蝠/cai/中冰丘丘胶.cai",
+        "img": "33丘丘胶和蝙蝠/img/%E4%B8%AD%E5%86%B0%E4%B8%98%E4%B8%98%E8%83%B6.png"
+      },
+      {
+        "name": "中火丘丘胶",
+        "cai": "33丘丘胶和蝙蝠/cai/中火丘丘胶.cai",
+        "img": "33丘丘胶和蝙蝠/img/%E4%B8%AD%E7%81%AB%E4%B8%98%E4%B8%98%E8%83%B6.png"
+      },
+      {
+        "name": "中电丘丘胶",
+        "cai": "33丘丘胶和蝙蝠/cai/中电丘丘胶.cai",
+        "img": "33丘丘胶和蝙蝠/img/%E4%B8%AD%E7%94%B5%E4%B8%98%E4%B8%98%E8%83%B6.png"
+      },
+      {
+        "name": "冰蝙蝠",
+        "cai": "33丘丘胶和蝙蝠/cai/冰蝙蝠.cai",
+        "img": "33丘丘胶和蝙蝠/img/%E5%86%B0%E8%9D%99%E8%9D%A0.png"
+      },
+      {
+        "name": "大丘丘胶",
+        "cai": "33丘丘胶和蝙蝠/cai/大丘丘胶.cai",
+        "img": "33丘丘胶和蝙蝠/img/%E5%A4%A7%E4%B8%98%E4%B8%98%E8%83%B6.png"
+      },
+      {
+        "name": "大冰丘丘胶",
+        "cai": "33丘丘胶和蝙蝠/cai/大冰丘丘胶.cai",
+        "img": "33丘丘胶和蝙蝠/img/%E5%A4%A7%E5%86%B0%E4%B8%98%E4%B8%98%E8%83%B6.png"
+      },
+      {
+        "name": "大火丘丘胶",
+        "cai": "33丘丘胶和蝙蝠/cai/大火丘丘胶.cai",
+        "img": "33丘丘胶和蝙蝠/img/%E5%A4%A7%E7%81%AB%E4%B8%98%E4%B8%98%E8%83%B6.png"
+      },
+      {
+        "name": "大电丘丘胶",
+        "cai": "33丘丘胶和蝙蝠/cai/大电丘丘胶.cai",
+        "img": "33丘丘胶和蝙蝠/img/%E5%A4%A7%E7%94%B5%E4%B8%98%E4%B8%98%E8%83%B6.png"
+      },
+      {
+        "name": "小丘丘胶",
+        "cai": "33丘丘胶和蝙蝠/cai/小丘丘胶.cai",
+        "img": "33丘丘胶和蝙蝠/img/%E5%B0%8F%E4%B8%98%E4%B8%98%E8%83%B6.png"
+      },
+      {
+        "name": "小冰丘丘胶",
+        "cai": "33丘丘胶和蝙蝠/cai/小冰丘丘胶.cai",
+        "img": "33丘丘胶和蝙蝠/img/%E5%B0%8F%E5%86%B0%E4%B8%98%E4%B8%98%E8%83%B6.png"
+      },
+      {
+        "name": "小火丘丘胶",
+        "cai": "33丘丘胶和蝙蝠/cai/小火丘丘胶.cai",
+        "img": "33丘丘胶和蝙蝠/img/%E5%B0%8F%E7%81%AB%E4%B8%98%E4%B8%98%E8%83%B6.png"
+      },
+      {
+        "name": "小电丘丘胶",
+        "cai": "33丘丘胶和蝙蝠/cai/小电丘丘胶.cai",
+        "img": "33丘丘胶和蝙蝠/img/%E5%B0%8F%E7%94%B5%E4%B8%98%E4%B8%98%E8%83%B6.png"
+      },
+      {
+        "name": "火蝙蝠",
+        "cai": "33丘丘胶和蝙蝠/cai/火蝙蝠.cai",
+        "img": "33丘丘胶和蝙蝠/img/%E7%81%AB%E8%9D%99%E8%9D%A0.png"
+      },
+      {
+        "name": "电蝙蝠",
+        "cai": "33丘丘胶和蝙蝠/cai/电蝙蝠.cai",
+        "img": "33丘丘胶和蝙蝠/img/%E7%94%B5%E8%9D%99%E8%9D%A0.png"
+      },
+      {
+        "name": "蝙蝠",
+        "cai": "33丘丘胶和蝙蝠/cai/蝙蝠.cai",
+        "img": "33丘丘胶和蝙蝠/img/%E8%9D%99%E8%9D%A0.png"
+      }
+    ]
+  },
+  "34左纳乌魔像": {
+    "name": "34左纳乌魔像",
+    "type": "category",
+    "files": [
+      {
+        "name": "士兵魔像I",
+        "cai": "34左纳乌魔像/cai/士兵魔像I.cai",
+        "img": "34左纳乌魔像/img/%E5%A3%AB%E5%85%B5%E9%AD%94%E5%83%8FI.png"
+      },
+      {
+        "name": "士兵魔像II",
+        "cai": "34左纳乌魔像/cai/士兵魔像II.cai",
+        "img": "34左纳乌魔像/img/%E5%A3%AB%E5%85%B5%E9%AD%94%E5%83%8FII.png"
+      },
+      {
+        "name": "士兵魔像III",
+        "cai": "34左纳乌魔像/cai/士兵魔像III.cai",
+        "img": "34左纳乌魔像/img/%E5%A3%AB%E5%85%B5%E9%AD%94%E5%83%8FIII.png"
+      },
+      {
+        "name": "士兵魔像IV",
+        "cai": "34左纳乌魔像/cai/士兵魔像IV.cai",
+        "img": "34左纳乌魔像/img/%E5%A3%AB%E5%85%B5%E9%AD%94%E5%83%8FIV.png"
+      },
+      {
+        "name": "队长魔像I",
+        "cai": "34左纳乌魔像/cai/队长魔像I.cai",
+        "img": "34左纳乌魔像/img/%E9%98%9F%E9%95%BF%E9%AD%94%E5%83%8FI.png"
+      },
+      {
+        "name": "队长魔像II",
+        "cai": "34左纳乌魔像/cai/队长魔像II.cai",
+        "img": "34左纳乌魔像/img/%E9%98%9F%E9%95%BF%E9%AD%94%E5%83%8FII.png"
+      },
+      {
+        "name": "队长魔像III",
+        "cai": "34左纳乌魔像/cai/队长魔像III.cai",
+        "img": "34左纳乌魔像/img/%E9%98%9F%E9%95%BF%E9%AD%94%E5%83%8FIII.png"
+      },
+      {
+        "name": "队长魔像IV",
+        "cai": "34左纳乌魔像/cai/队长魔像IV.cai",
+        "img": "34左纳乌魔像/img/%E9%98%9F%E9%95%BF%E9%AD%94%E5%83%8FIV.png"
+      }
+    ]
+  },
+  "35蜥蜴怪": {
+    "name": "35蜥蜴怪",
+    "type": "category",
+    "files": [
+      {
+        "name": "冰蜥蜴战士",
+        "cai": "35蜥蜴怪/cai/冰蜥蜴战士.cai",
+        "img": "35蜥蜴怪/img/%E5%86%B0%E8%9C%A5%E8%9C%B4%E6%88%98%E5%A3%AB.png"
+      },
+      {
+        "name": "火蜥蜴战士",
+        "cai": "35蜥蜴怪/cai/火蜥蜴战士.cai",
+        "img": "35蜥蜴怪/img/%E7%81%AB%E8%9C%A5%E8%9C%B4%E6%88%98%E5%A3%AB.png"
+      },
+      {
+        "name": "电蜥蜴战士",
+        "cai": "35蜥蜴怪/cai/电蜥蜴战士.cai",
+        "img": "35蜥蜴怪/img/%E7%94%B5%E8%9C%A5%E8%9C%B4%E6%88%98%E5%A3%AB.png"
+      },
+      {
+        "name": "白银蜥蜴战士",
+        "cai": "35蜥蜴怪/cai/白银蜥蜴战士.cai",
+        "img": "35蜥蜴怪/img/%E7%99%BD%E9%93%B6%E8%9C%A5%E8%9C%B4%E6%88%98%E5%A3%AB.png"
+      },
+      {
+        "name": "蓝色蜥蜴战士",
+        "cai": "35蜥蜴怪/cai/蓝色蜥蜴战士.cai",
+        "img": "35蜥蜴怪/img/%E8%93%9D%E8%89%B2%E8%9C%A5%E8%9C%B4%E6%88%98%E5%A3%AB.png"
+      },
+      {
+        "name": "蜥蜴战士",
+        "cai": "35蜥蜴怪/cai/蜥蜴战士.cai",
+        "img": "35蜥蜴怪/img/%E8%9C%A5%E8%9C%B4%E6%88%98%E5%A3%AB.png"
+      },
+      {
+        "name": "骸骨蜥蜴战士",
+        "cai": "35蜥蜴怪/cai/骸骨蜥蜴战士.cai",
+        "img": "35蜥蜴怪/img/%E9%AA%B8%E9%AA%A8%E8%9C%A5%E8%9C%B4%E6%88%98%E5%A3%AB.png"
+      },
+      {
+        "name": "黑色蜥蜴战士",
+        "cai": "35蜥蜴怪/cai/黑色蜥蜴战士.cai",
+        "img": "35蜥蜴怪/img/%E9%BB%91%E8%89%B2%E8%9C%A5%E8%9C%B4%E6%88%98%E5%A3%AB.png"
+      }
+    ]
+  },
+  "36人马和依盖队": {
+    "name": "36人马和依盖队",
+    "type": "category",
+    "files": [
+      {
+        "name": "人马(装甲)",
+        "cai": "36人马和依盖队/cai/人马(装甲).cai",
+        "img": "36人马和依盖队/img/%E4%BA%BA%E9%A9%AC(%E8%A3%85%E7%94%B2).png"
+      },
+      {
+        "name": "人马",
+        "cai": "36人马和依盖队/cai/人马.cai",
+        "img": "36人马和依盖队/img/%E4%BA%BA%E9%A9%AC.png"
+      },
+      {
+        "name": "依盖队干部",
+        "cai": "36人马和依盖队/cai/依盖队干部.cai",
+        "img": "36人马和依盖队/img/%E4%BE%9D%E7%9B%96%E9%98%9F%E5%B9%B2%E9%83%A8.png"
+      },
+      {
+        "name": "依盖队队员",
+        "cai": "36人马和依盖队/cai/依盖队队员.cai",
+        "img": "36人马和依盖队/img/%E4%BE%9D%E7%9B%96%E9%98%9F%E9%98%9F%E5%91%98.png"
+      },
+      {
+        "name": "白银人马(装甲)",
+        "cai": "36人马和依盖队/cai/白银人马(装甲).cai",
+        "img": "36人马和依盖队/img/%E7%99%BD%E9%93%B6%E4%BA%BA%E9%A9%AC(%E8%A3%85%E7%94%B2).png"
+      },
+      {
+        "name": "白银人马",
+        "cai": "36人马和依盖队/cai/白银人马.cai",
+        "img": "36人马和依盖队/img/%E7%99%BD%E9%93%B6%E4%BA%BA%E9%A9%AC.png"
+      },
+      {
+        "name": "白鬃人马(装甲)",
+        "cai": "36人马和依盖队/cai/白鬃人马(装甲).cai",
+        "img": "36人马和依盖队/img/%E7%99%BD%E9%AC%83%E4%BA%BA%E9%A9%AC(%E8%A3%85%E7%94%B2).png"
+      },
+      {
+        "name": "白鬃人马",
+        "cai": "36人马和依盖队/cai/白鬃人马.cai",
+        "img": "36人马和依盖队/img/%E7%99%BD%E9%AC%83%E4%BA%BA%E9%A9%AC.png"
+      },
+      {
+        "name": "蓝鬃人马(装甲)",
+        "cai": "36人马和依盖队/cai/蓝鬃人马(装甲).cai",
+        "img": "36人马和依盖队/img/%E8%93%9D%E9%AC%83%E4%BA%BA%E9%A9%AC(%E8%A3%85%E7%94%B2).png"
+      },
+      {
+        "name": "蓝鬃人马",
+        "cai": "36人马和依盖队/cai/蓝鬃人马.cai",
+        "img": "36人马和依盖队/img/%E8%93%9D%E9%AC%83%E4%BA%BA%E9%A9%AC.png"
+      }
+    ]
+  },
+  "37Miscellaneous": {
+    "name": "37Miscellaneous",
+    "type": "category",
+    "files": [
+      {
+        "name": "吉波得",
+        "cai": "37Miscellaneous/cai/吉波得.cai",
+        "img": "37Miscellaneous/img/%E5%90%89%E6%B3%A2%E5%BE%97.png"
+      },
+      {
+        "name": "小弗洛克",
+        "cai": "37Miscellaneous/cai/小弗洛克.cai",
+        "img": "37Miscellaneous/img/%E5%B0%8F%E5%BC%97%E6%B4%9B%E5%85%8B.png"
+      },
+      {
+        "name": "翼手龙",
+        "cai": "37Miscellaneous/cai/翼手龙.cai",
+        "img": "37Miscellaneous/img/%E7%BF%BC%E6%89%8B%E9%BE%99.png"
+      },
+      {
+        "name": "飞蛾吉波得",
+        "cai": "37Miscellaneous/cai/飞蛾吉波得.cai",
+        "img": "37Miscellaneous/img/%E9%A3%9E%E8%9B%BE%E5%90%89%E6%B3%A2%E5%BE%97.png"
+      },
+      {
+        "name": "魔像树(地下)",
+        "cai": "37Miscellaneous/cai/魔像树(地下).cai",
+        "img": "37Miscellaneous/img/%E9%AD%94%E5%83%8F%E6%A0%91(%E5%9C%B0%E4%B8%8B).png"
+      },
+      {
+        "name": "魔像树(苹果)",
+        "cai": "37Miscellaneous/cai/魔像树(苹果).cai",
+        "img": "37Miscellaneous/img/%E9%AD%94%E5%83%8F%E6%A0%91(%E8%8B%B9%E6%9E%9C).png"
+      },
+      {
+        "name": "魔像树(蜜蜂)",
+        "cai": "37Miscellaneous/cai/魔像树(蜜蜂).cai",
+        "img": "37Miscellaneous/img/%E9%AD%94%E5%83%8F%E6%A0%91(%E8%9C%9C%E8%9C%82).png"
+      },
+      {
+        "name": "魔像树",
+        "cai": "37Miscellaneous/cai/魔像树.cai",
+        "img": "37Miscellaneous/img/%E9%AD%94%E5%83%8F%E6%A0%91.png"
+      }
+    ]
+  },
+  "38章鱼怪和魔法师": {
+    "name": "38章鱼怪和魔法师",
+    "type": "category",
+    "files": [
+      {
+        "name": "冰魔法师",
+        "cai": "38章鱼怪和魔法师/cai/冰魔法师.cai",
+        "img": "38章鱼怪和魔法师/img/%E5%86%B0%E9%AD%94%E6%B3%95%E5%B8%88.png"
+      },
+      {
+        "name": "冰魔法师_冰",
+        "cai": "38章鱼怪和魔法师/cai/冰魔法师_冰.cai",
+        "img": "38章鱼怪和魔法师/img/%E5%86%B0%E9%AD%94%E6%B3%95%E5%B8%88_%E5%86%B0.png"
+      },
+      {
+        "name": "宝箱章鱼怪",
+        "cai": "38章鱼怪和魔法师/cai/宝箱章鱼怪.cai",
+        "img": "38章鱼怪和魔法师/img/%E5%AE%9D%E7%AE%B1%E7%AB%A0%E9%B1%BC%E6%80%AA.png"
+      },
+      {
+        "name": "岩石章鱼怪",
+        "cai": "38章鱼怪和魔法师/cai/岩石章鱼怪.cai",
+        "img": "38章鱼怪和魔法师/img/%E5%B2%A9%E7%9F%B3%E7%AB%A0%E9%B1%BC%E6%80%AA.png"
+      },
+      {
+        "name": "森林章鱼怪",
+        "cai": "38章鱼怪和魔法师/cai/森林章鱼怪.cai",
+        "img": "38章鱼怪和魔法师/img/%E6%A3%AE%E6%9E%97%E7%AB%A0%E9%B1%BC%E6%80%AA.png"
+      },
+      {
+        "name": "水中章鱼怪",
+        "cai": "38章鱼怪和魔法师/cai/水中章鱼怪.cai",
+        "img": "38章鱼怪和魔法师/img/%E6%B0%B4%E4%B8%AD%E7%AB%A0%E9%B1%BC%E6%80%AA.png"
+      },
+      {
+        "name": "火魔法师",
+        "cai": "38章鱼怪和魔法师/cai/火魔法师.cai",
+        "img": "38章鱼怪和魔法师/img/%E7%81%AB%E9%AD%94%E6%B3%95%E5%B8%88.png"
+      },
+      {
+        "name": "电魔法师",
+        "cai": "38章鱼怪和魔法师/cai/电魔法师.cai",
+        "img": "38章鱼怪和魔法师/img/%E7%94%B5%E9%AD%94%E6%B3%95%E5%B8%88.png"
+      },
+      {
+        "name": "陨石魔法师",
+        "cai": "38章鱼怪和魔法师/cai/陨石魔法师.cai",
+        "img": "38章鱼怪和魔法师/img/%E9%99%A8%E7%9F%B3%E9%AD%94%E6%B3%95%E5%B8%88.png"
+      },
+      {
+        "name": "雪地章鱼怪",
+        "cai": "38章鱼怪和魔法师/cai/雪地章鱼怪.cai",
+        "img": "38章鱼怪和魔法师/img/%E9%9B%AA%E5%9C%B0%E7%AB%A0%E9%B1%BC%E6%80%AA.png"
+      },
+      {
+        "name": "雷魔法师",
+        "cai": "38章鱼怪和魔法师/cai/雷魔法师.cai",
+        "img": "38章鱼怪和魔法师/img/%E9%9B%B7%E9%AD%94%E6%B3%95%E5%B8%88.png"
+      }
+    ]
+  },
+  "39石怪和莱克莱克": {
+    "name": "39石怪和莱克莱克",
+    "type": "category",
+    "files": [
+      {
+        "name": "冰石头怪",
+        "cai": "39石怪和莱克莱克/cai/冰石头怪.cai",
+        "img": "39石怪和莱克莱克/img/%E5%86%B0%E7%9F%B3%E5%A4%B4%E6%80%AA.png"
+      },
+      {
+        "name": "冰莱克莱克",
+        "cai": "39石怪和莱克莱克/cai/冰莱克莱克.cai",
+        "img": "39石怪和莱克莱克/img/%E5%86%B0%E8%8E%B1%E5%85%8B%E8%8E%B1%E5%85%8B.png"
+      },
+      {
+        "name": "岩石莱克莱克",
+        "cai": "39石怪和莱克莱克/cai/岩石莱克莱克.cai",
+        "img": "39石怪和莱克莱克/img/%E5%B2%A9%E7%9F%B3%E8%8E%B1%E5%85%8B%E8%8E%B1%E5%85%8B.png"
+      },
+      {
+        "name": "火石头怪",
+        "cai": "39石怪和莱克莱克/cai/火石头怪.cai",
+        "img": "39石怪和莱克莱克/img/%E7%81%AB%E7%9F%B3%E5%A4%B4%E6%80%AA.png"
+      },
+      {
+        "name": "火莱克莱克",
+        "cai": "39石怪和莱克莱克/cai/火莱克莱克.cai",
+        "img": "39石怪和莱克莱克/img/%E7%81%AB%E8%8E%B1%E5%85%8B%E8%8E%B1%E5%85%8B.png"
+      },
+      {
+        "name": "电莱克莱克",
+        "cai": "39石怪和莱克莱克/cai/电莱克莱克.cai",
+        "img": "39石怪和莱克莱克/img/%E7%94%B5%E8%8E%B1%E5%85%8B%E8%8E%B1%E5%85%8B.png"
+      },
+      {
+        "name": "石头怪",
+        "cai": "39石怪和莱克莱克/cai/石头怪.cai",
+        "img": "39石怪和莱克莱克/img/%E7%9F%B3%E5%A4%B4%E6%80%AA.png"
+      },
+      {
+        "name": "莱克莱克",
+        "cai": "39石怪和莱克莱克/cai/莱克莱克.cai",
+        "img": "39石怪和莱克莱克/img/%E8%8E%B1%E5%85%8B%E8%8E%B1%E5%85%8B.png"
+      }
+    ]
+  },
+  "40中等头目": {
+    "name": "40中等头目",
+    "type": "category",
+    "files": [
+      {
+        "name": "冰霜古栗欧克",
+        "cai": "40中等头目/cai/冰霜古栗欧克.cai",
+        "img": "40中等头目/img/%E5%86%B0%E9%9C%9C%E5%8F%A4%E6%A0%97%E6%AC%A7%E5%85%8B.png"
+      },
+      {
+        "name": "冰霜岩石巨人",
+        "cai": "40中等头目/cai/冰霜岩石巨人.cai",
+        "img": "40中等头目/img/%E5%86%B0%E9%9C%9C%E5%B2%A9%E7%9F%B3%E5%B7%A8%E4%BA%BA.png"
+      },
+      {
+        "name": "古栗欧克王",
+        "cai": "40中等头目/cai/古栗欧克王.cai",
+        "img": "40中等头目/img/%E5%8F%A4%E6%A0%97%E6%AC%A7%E5%85%8B%E7%8E%8B.png"
+      },
+      {
+        "name": "岩石巨人(发光)",
+        "cai": "40中等头目/cai/岩石巨人(发光).cai",
+        "img": "40中等头目/img/%E5%B2%A9%E7%9F%B3%E5%B7%A8%E4%BA%BA(%E5%8F%91%E5%85%89).png"
+      },
+      {
+        "name": "岩石巨人(稀有)",
+        "cai": "40中等头目/cai/岩石巨人(稀有).cai",
+        "img": "40中等头目/img/%E5%B2%A9%E7%9F%B3%E5%B7%A8%E4%BA%BA(%E7%A8%80%E6%9C%89).png"
+      },
+      {
+        "name": "岩石巨人",
+        "cai": "40中等头目/cai/岩石巨人.cai",
+        "img": "40中等头目/img/%E5%B2%A9%E7%9F%B3%E5%B7%A8%E4%BA%BA.png"
+      },
+      {
+        "name": "幻影盖侬(魔物)",
+        "cai": "40中等头目/cai/幻影盖侬(魔物).cai",
+        "img": "40中等头目/img/%E5%B9%BB%E5%BD%B1%E7%9B%96%E4%BE%AC(%E9%AD%94%E7%89%A9).png"
+      },
+      {
+        "name": "幻影盖侬",
+        "cai": "40中等头目/cai/幻影盖侬.cai",
+        "img": "40中等头目/img/%E5%B9%BB%E5%BD%B1%E7%9B%96%E4%BE%AC.png"
+      },
+      {
+        "name": "弗洛克",
+        "cai": "40中等头目/cai/弗洛克.cai",
+        "img": "40中等头目/img/%E5%BC%97%E6%B4%9B%E5%85%8B.png"
+      },
+      {
+        "name": "战斗岩石巨人",
+        "cai": "40中等头目/cai/战斗岩石巨人.cai",
+        "img": "40中等头目/img/%E6%88%98%E6%96%97%E5%B2%A9%E7%9F%B3%E5%B7%A8%E4%BA%BA.png"
+      },
+      {
+        "name": "流动魔像I",
+        "cai": "40中等头目/cai/流动魔像I.cai",
+        "img": "40中等头目/img/%E6%B5%81%E5%8A%A8%E9%AD%94%E5%83%8FI.png"
+      },
+      {
+        "name": "流动魔像II",
+        "cai": "40中等头目/cai/流动魔像II.cai",
+        "img": "40中等头目/img/%E6%B5%81%E5%8A%A8%E9%AD%94%E5%83%8FII.png"
+      },
+      {
+        "name": "流动魔像III",
+        "cai": "40中等头目/cai/流动魔像III.cai",
+        "img": "40中等头目/img/%E6%B5%81%E5%8A%A8%E9%AD%94%E5%83%8FIII.png"
+      },
+      {
+        "name": "火焰古栗欧克",
+        "cai": "40中等头目/cai/火焰古栗欧克.cai",
+        "img": "40中等头目/img/%E7%81%AB%E7%84%B0%E5%8F%A4%E6%A0%97%E6%AC%A7%E5%85%8B.png"
+      },
+      {
+        "name": "火焰岩石巨人",
+        "cai": "40中等头目/cai/火焰岩石巨人.cai",
+        "img": "40中等头目/img/%E7%81%AB%E7%84%B0%E5%B2%A9%E7%9F%B3%E5%B7%A8%E4%BA%BA.png"
+      },
+      {
+        "name": "独眼巨人",
+        "cai": "40中等头目/cai/独眼巨人.cai",
+        "img": "40中等头目/img/%E7%8B%AC%E7%9C%BC%E5%B7%A8%E4%BA%BA.png"
+      },
+      {
+        "name": "莫尔德拉吉克",
+        "cai": "40中等头目/cai/莫尔德拉吉克.cai",
+        "img": "40中等头目/img/%E8%8E%AB%E5%B0%94%E5%BE%B7%E6%8B%89%E5%90%89%E5%85%8B.png"
+      },
+      {
+        "name": "蓝白弗洛克",
+        "cai": "40中等头目/cai/蓝白弗洛克.cai",
+        "img": "40中等头目/img/%E8%93%9D%E7%99%BD%E5%BC%97%E6%B4%9B%E5%85%8B.png"
+      },
+      {
+        "name": "蓝色独眼巨人",
+        "cai": "40中等头目/cai/蓝色独眼巨人.cai",
+        "img": "40中等头目/img/%E8%93%9D%E8%89%B2%E7%8B%AC%E7%9C%BC%E5%B7%A8%E4%BA%BA.png"
+      },
+      {
+        "name": "雷电古栗欧克",
+        "cai": "40中等头目/cai/雷电古栗欧克.cai",
+        "img": "40中等头目/img/%E9%9B%B7%E7%94%B5%E5%8F%A4%E6%A0%97%E6%AC%A7%E5%85%8B.png"
+      },
+      {
+        "name": "骸骨独眼巨人",
+        "cai": "40中等头目/cai/骸骨独眼巨人.cai",
+        "img": "40中等头目/img/%E9%AA%B8%E9%AA%A8%E7%8B%AC%E7%9C%BC%E5%B7%A8%E4%BA%BA.png"
+      },
+      {
+        "name": "黑曜石弗洛克",
+        "cai": "40中等头目/cai/黑曜石弗洛克.cai",
+        "img": "40中等头目/img/%E9%BB%91%E6%9B%9C%E7%9F%B3%E5%BC%97%E6%B4%9B%E5%85%8B.png"
+      },
+      {
+        "name": "黑色独眼巨人",
+        "cai": "40中等头目/cai/黑色独眼巨人.cai",
+        "img": "40中等头目/img/%E9%BB%91%E8%89%B2%E7%8B%AC%E7%9C%BC%E5%B7%A8%E4%BA%BA.png"
+      }
+    ]
+  },
+  "41特殊效果蓝图": {
+    "name": "41特殊效果蓝图",
+    "type": "category",
+    "files": [
+      {
+        "name": "冰云-冰冻敌人",
+        "cai": "41特殊效果蓝图/cai/冰云-冰冻敌人.cai",
+        "img": "41特殊效果蓝图/img/%E5%86%B0%E4%BA%91-%E5%86%B0%E5%86%BB%E6%95%8C%E4%BA%BA.png"
+      },
+      {
+        "name": "可生成低重力-2000米范围",
+        "cai": "41特殊效果蓝图/cai/可生成低重力-2000米范围.cai",
+        "img": "41特殊效果蓝图/img/%E5%8F%AF%E7%94%9F%E6%88%90%E4%BD%8E%E9%87%8D%E5%8A%9B-2000%E7%B1%B3%E8%8C%83%E5%9B%B4.png"
+      },
+      {
+        "name": "无限上升气流(力巴尔)-2000米范围",
+        "cai": "41特殊效果蓝图/cai/无限上升气流(力巴尔)-2000米范围.cai",
+        "img": "41特殊效果蓝图/img/%E6%97%A0%E9%99%90%E4%B8%8A%E5%8D%87%E6%B0%94%E6%B5%81(%E5%8A%9B%E5%B7%B4%E5%B0%94)-2000%E7%B1%B3%E8%8C%83%E5%9B%B4.png"
+      },
+      {
+        "name": "水花-湿润效果",
+        "cai": "41特殊效果蓝图/cai/水花-湿润效果.cai",
+        "img": "41特殊效果蓝图/img/%E6%B0%B4%E8%8A%B1-%E6%B9%BF%E6%B6%A6%E6%95%88%E6%9E%9C.png"
+      },
+      {
+        "name": "混乱花-地毯轰炸",
+        "cai": "41特殊效果蓝图/cai/混乱花-地毯轰炸.cai",
+        "img": "41特殊效果蓝图/img/%E6%B7%B7%E4%B9%B1%E8%8A%B1-%E5%9C%B0%E6%AF%AF%E8%BD%B0%E7%82%B8.png"
+      },
+      {
+        "name": "火球-燃烧敌人",
+        "cai": "41特殊效果蓝图/cai/火球-燃烧敌人.cai",
+        "img": "41特殊效果蓝图/img/%E7%81%AB%E7%90%83-%E7%87%83%E7%83%A7%E6%95%8C%E4%BA%BA.png"
+      },
+      {
+        "name": "生成5个巨大炸弹桶Lv3",
+        "cai": "41特殊效果蓝图/cai/生成5个巨大炸弹桶Lv3.cai",
+        "img": "41特殊效果蓝图/img/%E7%94%9F%E6%88%905%E4%B8%AA%E5%B7%A8%E5%A4%A7%E7%82%B8%E5%BC%B9%E6%A1%B6Lv3.png"
+      },
+      {
+        "name": "闪光弹-2000米范围",
+        "cai": "41特殊效果蓝图/cai/闪光弹-2000米范围.cai",
+        "img": "41特殊效果蓝图/img/%E9%97%AA%E5%85%89%E5%BC%B9-2000%E7%B1%B3%E8%8C%83%E5%9B%B4.png"
+      },
+      {
+        "name": "雷电(露珠)-2000米范围",
+        "cai": "41特殊效果蓝图/cai/雷电(露珠)-2000米范围.cai",
+        "img": "41特殊效果蓝图/img/%E9%9B%B7%E7%94%B5(%E9%9C%B2%E7%8F%A0)-2000%E7%B1%B3%E8%8C%83%E5%9B%B4.png"
+      },
+      {
+        "name": "雷电-天气",
+        "cai": "41特殊效果蓝图/cai/雷电-天气.cai",
+        "img": "41特殊效果蓝图/img/%E9%9B%B7%E7%94%B5-%E5%A4%A9%E6%B0%94.png"
+      }
+    ]
+  },
   "88废物": {
     "name": "88废物",
     "type": "category",

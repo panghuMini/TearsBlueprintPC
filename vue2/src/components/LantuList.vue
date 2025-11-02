@@ -15,7 +15,7 @@
             :key="file.name"
             :class="['lantu-item-box', { 
               active: isCollected(file),
-              teshu: category.key === '99外网采集的蓝图，因为太多没时间测分类'
+              teshu: isTeshuCategory(category.key)
             }]"
             @click="toggleCollect(file)"
           >
@@ -134,6 +134,24 @@ export default {
     },
     toggleCollect(file) {
       this.$emit('toggle-collect', file);
+    },
+    isTeshuCategory(categoryKey) {
+      // 检查分类是否属于特殊分类
+      const teshuCategories = [
+        '99外网采集的蓝图，因为太多没时间测分类',
+        '31哥布林怪',
+        '32Boss',
+        '33丘丘胶和蝙蝠',
+        '34左纳乌魔像',
+        '35蜥蜴怪',
+        '36人马和依盖队',
+        '37Miscellaneous',
+        '38章鱼怪和魔法师',
+        '39石怪和莱克莱克',
+        '40中等头目',
+        '41特殊效果蓝图'
+      ];
+      return teshuCategories.includes(categoryKey);
     }
   }
 }
