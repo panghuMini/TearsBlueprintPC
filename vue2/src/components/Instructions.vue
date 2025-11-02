@@ -68,14 +68,14 @@
         <div class="faq-item">
           <div class="faq-question">- 这软件有什么用？</div>
           <div class="faq-answer">
-            <div class="faq-answer-item">- 这软件可以为switch硬破机 或者 模拟器，解决王国之泪，收藏蓝图只有8张的限制，新增46张蓝图；</div>
+            <div class="faq-answer-item">- 这软件可以为switch硬破机 或者 模拟器，在蓝图历史记录里，导入30张蓝图；</div>
             <div class="faq-answer-item">- 这软件，可以为无法建造出 完美MK2，蝙蝠侠战车等高达的玩家，直接勾选 蓝图，实现能用蓝图；</div>
             <div class="faq-answer-item">- 这软件，提供 塞尔达王国之泪存档修改器，方便你修改材料数据等，代替你肝材料的过程；（对应左侧菜单栏的 存档修改大师版，当然外网也有大神的这个，可是需要翻墙，这个是本地的速度更快，断网也可以使用）</div>
           </div>
         </div>
 
         <div class="faq-item">
-          <div class="faq-question">- 假如我选了40张蓝图，我现在想在中间插入一张蓝图在第21张，我必须要先取消20张蓝图的勾选，重新选一次么？</div>
+          <div class="faq-question">- 假如我选了30张蓝图，我现在想在中间插入一张蓝图在第15张，我必须要先取消15张蓝图的勾选，重新选一次么？</div>
           <div class="faq-answer">
             <div class="faq-answer-item">- 不用，【我的收藏】界面，点编辑后，是可以利用拖拽，直接更改蓝图排序位置，自定义排序的</div>
           </div>

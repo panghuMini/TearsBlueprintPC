@@ -11,5 +11,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
   exportOkZip: (zipPath) => ipcRenderer.invoke('export-ok-zip', zipPath),
   processSaveZip: (zipPath) => ipcRenderer.invoke('process-save-zip', zipPath),
   onSaveEditProgress: (cb) => ipcRenderer.on('save-edit-progress', (_e, payload) => cb && cb(payload)),
-  getEditorPath: () => ipcRenderer.invoke('get-editor-path')
+  getEditorPath: () => ipcRenderer.invoke('get-editor-path'),
+  processBlueprintExport: (zipPath, collectedItems) => ipcRenderer.invoke('process-blueprint-export', zipPath, collectedItems),
+  exportBlueprintOkZip: (tempRoot, singleRootName) => ipcRenderer.invoke('export-blueprint-ok-zip', tempRoot, singleRootName)
 })

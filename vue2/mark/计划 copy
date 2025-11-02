@@ -1,0 +1,70 @@
+帮我先把当前的文件都git提交备份了，再执行以下修改计划：
+
+ F:\TearsBlueprint\TearsBlueprintPC\vue2\src目录下
+ 两个[导出到游戏],点击后，需要触发的事情，原来的全部都不要了，重写为以下逻辑：
+
+ 可以参考  F:\TearsBlueprint\TearsBlueprintPC\vue2\src\components\SaveGameEditXiaobai.vue里 【存档修改】点击后执行的事件，但是需要对应修改为以下逻辑：
+
+1.点击[导出到游戏]后，需要弹出一个文件选择弹窗，让用户选取电脑上的一个zip压缩文件包;
+2.用户选择的zip压缩包，如同 test - 2025-10-31_10-06-21.zip 里的文件结构是一样的，
+ slot_00、slot_01、slot_02、slot_03、slot_04、slot_05     会包含如上的6个文件夹；
+ 也有可能只是其中1个或者几个，少的文件夹，可以不管，最多如上6个;
+
+3.利用F:\TearsBlueprint\TearsBlueprintPC\vendor\savegame-editors\zelda-totk\index.html 导入caption.sav可以显示图片预览图的逻辑；
+显示: 请选择你要修改的存档：
+显示出  slot_00、slot_01、slot_02、slot_03、slot_04、slot_05 这几个文件夹里，导入 caption.sav 的图片预览图，显示出来，并且可以点击，用户如果点击了哪个预览图，则记住这个预览图是slot_几几文件夹，执行以下逻辑：
+
+3.在这里要加载loading，不让用户操作，并提示处理进度
+4.参考  F:\TearsBlueprint\TearsBlueprintPC\vue2\src\components\SaveGameEditXiaobai.vue里 【存档修改】点击后执行的事件，对这slot_几几文件夹，取其中的 progress.sav 文件，执行类似导入到 F:\TearsBlueprint\TearsBlueprintPC\vendor\savegame-editors\zelda-botw\index.html 文件的效果;
+    -导入后，依次执行触发 autoBuild、changeBattery、awaitMaterialsDOM、addMaterials1、awaitDevicesDOM、zuonawuAll 的操作;
+    -再执行，将你当前收藏里，对应的蓝图的cai文件，依次重命名为01.cai  02.cai   ..... 30.cai 这样的文件名
+    -将01.cai   02.cai  ....  30.cai  执行类似在 F:\TearsBlueprint\TearsBlueprintPC\vendor\savegame-editors\zelda-botw\index.html 文件里，
+        `
+        <div class="mb-10">
+				<label><span data-translate="Blueprint">蓝图</span> <select id="select-autobuilder-index" style="width:auto">
+					<option value="0">01</option>
+					<option value="1">02</option>
+					<option value="2">03</option>
+					<option value="3">04</option>
+					<option value="4">05</option>
+					<option value="5">06</option>
+					<option value="6">07</option>
+					<option value="7">08</option>
+					<option value="8">09</option>
+					<option value="9">10</option>
+					<option value="10">11</option>
+					<option value="11">12</option>
+					<option value="12">13</option>
+					<option value="13">14</option>
+					<option value="14">15</option>
+					<option value="15">16</option>
+					<option value="16">17</option>
+					<option value="17">18</option>
+					<option value="18">19</option>
+					<option value="19">20</option>
+					<option value="20">21</option>
+					<option value="21">22</option>
+					<option value="22">23</option>
+					<option value="23">24</option>
+					<option value="24">25</option>
+					<option value="25">26</option>
+					<option value="26">27</option>
+					<option value="27">28</option>
+					<option value="28">29</option>
+					<option value="29">30</option>
+				</select></label>
+				<button class="btn" id="button-autobuilder-preview"><img src="assets/octicons/octicon_eye.svg" loading="lazy" class="octicon"> <span data-translate="Preview">预览</span></button>
+				<button class="btn" id="button-autobuilder-export"><img src="assets/octicons/octicon_download.svg" loading="lazy" class="octicon"> <span data-translate="Export">导出</span></button>
+				<button class="btn" id="button-autobuilder-import"><img src="assets/octicons/octicon_upload.svg" loading="lazy" class="octicon"> <span data-translate="Import">导入</span></button>
+				<input id="input-file-autobuilder-import" type="file" accept=".cai" class="hide">
+			</div>
+            `
+            依次执行了:
+                把option选中了为01，然后导入了01.cai，
+                把option选中了为02，然后导入了02.cai，
+                .....
+                把option选中了为30，然后导入了30.cai，
+        -上面的确认完成了以后，触发 saveChanges 函数，保存progress.sav覆盖在原文件的路径上
+
+5.保持原zip文件结构不变，让用户选择导出文件夹，这里可以取消loading效果了，让用户操作
+  等用户选择后，在用户选择的文件夹上，导出一个ok.zip的文件; 并弹窗提示：ok.zip导出成功，请用jksv将其恢复到游戏存档里

@@ -442,6 +442,230 @@ ipcMain.handle('process-save-zip', async (_event, zipPath) => {
   }
 })
 
+// 处理蓝图导出到游戏的zip文件
+ipcMain.handle('process-blueprint-export', async (_event, zipPath, collectedItems) => {
+  try {
+    if (!zipPath || !fs.existsSync(zipPath)) {
+      throw new Error('ZIP 文件不存在')
+    }
+    if (!collectedItems || collectedItems.length === 0) {
+      throw new Error('没有收藏的蓝图')
+    }
+
+    sendProgress(null, { stage: 'init', message: '解压zip文件...' })
+    const { singleRootName } = analyzeZipTopLevel(zipPath)
+    const tempRoot = await extractZipToTemp(zipPath)
+
+    // 根目录用于定位 slot 路径
+    const rootDir = singleRootName && singleRootName !== ''
+      ? path.join(tempRoot, singleRootName)
+      : tempRoot
+
+    const slots = ['slot_00','slot_01','slot_02','slot_03','slot_04','slot_05']
+    let editor = await getEditorWindow()
+    const gameSourcePath = path.join(__dirname, 'vue2')
+
+    // 准备临时目录存放重命名的cai文件
+    const tempCaiDir = path.join(app.getPath('temp'), 'totk_blueprints_' + Date.now())
+    fse.ensureDirSync(tempCaiDir)
+
+    // 将收藏的蓝图cai文件复制并重命名为01.cai到30.cai
+    const maxBlueprints = Math.min(collectedItems.length, 30)
+    for (let i = 0; i < maxBlueprints; i++) {
+      const item = collectedItems[i]
+      if (item.cai) {
+        const sourceCaiPath = path.join(gameSourcePath, 'public', 'lantu', item.cai)
+        const targetCaiPath = path.join(tempCaiDir, `${String(i + 1).padStart(2, '0')}.cai`)
+        if (fs.existsSync(sourceCaiPath)) {
+          fs.copyFileSync(sourceCaiPath, targetCaiPath)
+        }
+      }
+    }
+
+    for (let i = 0; i < slots.length; i++) {
+      const slot = slots[i]
+      const slotDir = path.join(rootDir, slot)
+      if (!fs.existsSync(slotDir)) {
+        continue
+      }
+      const progressPath = path.join(slotDir, 'progress.sav')
+      if (!fs.existsSync(progressPath)) {
+        continue
+      }
+
+      sendProgress(null, { stage: 'processing', slot, step: `处理 ${slot}` })
+
+      // 每个 slot 独立重置页面
+      editor = await resetEditorWindow()
+
+      const steps = [
+        { name: 'i18nPatch', code: async () => editor.webContents.executeJavaScript(`(() => {
+            try {
+              const extraMap = { Energy_Material_03: '大的左纳尼乌能源' };
+              const orig_ = window._;
+              if (typeof orig_ === 'function') {
+                window._ = function(key){ return (extraMap[key] || orig_(key)); };
+              } else {
+                window._ = function(key){ return extraMap[key] || key; };
+              }
+            } catch(e) {}
+            return true;
+        })()`)},
+        { name: 'loadProgress', code: async () => {
+          const js = `(() => {
+            const fs = require('fs');
+            const progressPath = ${JSON.stringify(progressPath)};
+            if (!fs.existsSync(progressPath)) throw new Error('progress.sav 不存在: ' + progressPath);
+            const buf = fs.readFileSync(progressPath);
+            const ab = buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength);
+            window.tempFile = new MarcFile(ab.byteLength);
+            window.tempFile.fileName = 'progress.sav';
+            window.tempFile._u8array = new Uint8Array(ab);
+            window.tempFile._dataView = new DataView(ab);
+            if (typeof window._tempFileLoadFunction !== 'function') throw new Error('_tempFileLoadFunction 不存在');
+            window._tempFileLoadFunction();
+            return true;
+          })()`;
+          return await editor.webContents.executeJavaScript(js)
+        }},
+        { name: 'autoBuild', code: async () => editor.webContents.executeJavaScript(`Promise.resolve(window.lantuTotk.autoBuild && window.lantuTotk.autoBuild())`) },
+        { name: 'changeBattery', code: async () => editor.webContents.executeJavaScript(`Promise.resolve(window.lantuTotk.changeBattery && window.lantuTotk.changeBattery(48000))`) },
+        { name: 'awaitMaterialsDOM', code: async () => editor.webContents.executeJavaScript(`new Promise((resolve)=>{const check=()=>{if(document.getElementById('container-materials')) return resolve(true); setTimeout(check,100)}; check();})`) },
+        { name: 'addMaterials1', code: async () => editor.webContents.executeJavaScript(`Promise.resolve(window.lantuTotk.addMaterials && window.lantuTotk.addMaterials('左纳尼乌姆', 999999))`) },
+        { name: 'awaitDevicesDOM', code: async () => editor.webContents.executeJavaScript(`new Promise((resolve)=>{const check=()=>{if(document.getElementById('container-devices')) return resolve(true); setTimeout(check,100)}; check();})`) },
+        { name: 'zuonawuAll', code: async () => editor.webContents.executeJavaScript(`Promise.resolve(window.lantuTotk.zuonawuAll && window.lantuTotk.zuonawuAll(888))`) },
+        { name: 'openLantu', code: async () => editor.webContents.executeJavaScript(`Promise.resolve(window.lantuTotk.openLantu && window.lantuTotk.openLantu())`) },
+        // 等待蓝图界面加载
+        { name: 'awaitAutobuilderDOM', code: async () => editor.webContents.executeJavaScript(`new Promise((resolve)=>{const check=()=>{const select=document.getElementById('select-autobuilder-index'); const input=document.getElementById('input-file-autobuilder-import'); if(select&&input) return resolve(true); setTimeout(check,100)}; check();})`) },
+        // 导入蓝图cai文件（01.cai到30.cai）
+        { name: 'importBlueprints', code: async () => {
+          // 依次导入每个cai文件
+          for (let blueprintIndex = 0; blueprintIndex < maxBlueprints; blueprintIndex++) {
+            const caiFileName = `${String(blueprintIndex + 1).padStart(2, '0')}.cai`
+            const caiFilePath = path.join(tempCaiDir, caiFileName)
+            if (!fs.existsSync(caiFilePath)) continue
+
+            sendProgress(null, { stage: 'processing', slot, step: `导入蓝图 ${caiFileName}` })
+
+            // 设置选择器值为blueprintIndex（0-29对应01-30）
+            const blueprintIndexValue = blueprintIndex
+            await editor.webContents.executeJavaScript(`
+              (() => {
+                const select = document.getElementById('select-autobuilder-index');
+                if (select) {
+                  select.value = ${blueprintIndexValue};
+                  // 触发change事件
+                  const event = new Event('change', { bubbles: true });
+                  select.dispatchEvent(event);
+                }
+              })()
+            `)
+
+            // 等待一下让选择器更新
+            await new Promise(resolve => setTimeout(resolve, 100))
+
+            // 读取cai文件并通过File API导入
+            const caiBuffer = fs.readFileSync(caiFilePath)
+            const caiArray = Array.from(caiBuffer)
+            
+            await editor.webContents.executeJavaScript(`
+              (() => {
+                return new Promise((resolve, reject) => {
+                  try {
+                    const input = document.getElementById('input-file-autobuilder-import');
+                    if (!input) {
+                      reject(new Error('找不到input-file-autobuilder-import元素'));
+                      return;
+                    }
+
+                    // 创建File对象
+                    const blob = new Blob([new Uint8Array(${JSON.stringify(caiArray)})], { type: 'application/octet-stream' });
+                    const file = new File([blob], ${JSON.stringify(caiFileName)}, { type: 'application/octet-stream' });
+
+                    // 创建DataTransfer对象来设置文件
+                    const dataTransfer = new DataTransfer();
+                    dataTransfer.items.add(file);
+
+                    // 设置input的files
+                    input.files = dataTransfer.files;
+
+                    // 触发change事件来执行导入逻辑
+                    const changeEvent = new Event('change', { bubbles: true });
+                    input.dispatchEvent(changeEvent);
+
+                    // 等待导入完成
+                    setTimeout(() => {
+                      resolve(true);
+                    }, 300);
+                  } catch (e) {
+                    reject(e);
+                  }
+                });
+              })()
+            `)
+
+            // 等待导入完成
+            await new Promise(resolve => setTimeout(resolve, 300))
+          }
+          return true
+        }},
+        { name: 'saveChanges', code: async () => editor.webContents.executeJavaScript(`(() => {
+            const fs = require('fs');
+            if (!window.SavegameEditor || typeof window.SavegameEditor.save !== 'function') throw new Error('SavegameEditor.save 不存在');
+            window.SavegameEditor.save();
+            if (!window.tempFile || !window.tempFile._u8array) throw new Error('未找到已修改的存档缓冲区');
+            const u8 = window.tempFile._u8array;
+            const nodeBuf = Buffer.from(u8);
+            fs.writeFileSync(${JSON.stringify(progressPath)}, nodeBuf);
+            return true;
+        })()`)}
+      ]
+
+      for (const step of steps) {
+        sendProgress(null, { stage: 'processing', slot, step: step.name })
+        await step.code()
+      }
+    }
+
+    // 清理临时cai目录
+    try {
+      fse.removeSync(tempCaiDir)
+    } catch (e) {
+      console.warn('清理临时目录失败:', e)
+    }
+
+    sendProgress(null, { stage: 'done', message: '处理完成，请选择导出文件夹' })
+    return { success: true, tempRoot, singleRootName }
+  } catch (e) {
+    sendProgress(null, { stage: 'error', error: e.message })
+    return { success: false, error: e.message }
+  }
+})
+
+// 导出蓝图处理后的ok.zip
+ipcMain.handle('export-blueprint-ok-zip', async (_event, tempRoot, singleRootName) => {
+  try {
+    const result = await dialog.showOpenDialog({ properties: ['openDirectory'] })
+    if (result.canceled || result.filePaths.length === 0) {
+      return { success: false, error: '未选择导出目录' }
+    }
+    const outDir = result.filePaths[0]
+    const outZip = path.join(outDir, 'ok.zip')
+    rezipPreservingTopLevel(tempRoot, singleRootName, outZip)
+
+    // 清理临时目录
+    try {
+      fse.removeSync(tempRoot)
+    } catch (e) {
+      console.warn('清理临时目录失败:', e)
+    }
+
+    return { success: true, output: outZip }
+  } catch (e) {
+    return { success: false, error: e.message }
+  }
+})
+
 app.whenReady().then(() => {
   ipcMain.handle('ping', () => 'pong')
   createWindow()

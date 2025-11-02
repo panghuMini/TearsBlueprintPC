@@ -131,36 +131,28 @@
       <div class="modal-content">
         <h3>导出到游戏</h3>
         
-        <!-- 首次选择路径 -->
-        <div v-if="!exportPath" class="export-first-time">
-          <p class="export-tip">请选择mod在电脑文件夹上的导出路径</p>
+        <!-- 初始状态：选择zip文件 -->
+        <div v-if="!isExporting && !finished" class="export-first-time">
+          <p class="export-tip">请选择你的存档zip压缩包文件</p>
           <div class="export-buttons">
-            <button class="btn btn-secondary" @click="selectExportPath">选择路径</button>
+            <button class="btn btn-primary" @click="confirmExport">选择zip文件</button>
             <button class="btn btn-secondary" @click="cancelExport">取消</button>
           </div>
         </div>
         
-        <!-- 显示已保存的路径 -->
-        <div v-if="exportPath" class="export-path-set">
-          <div class="path-display">
-            <span class="path-label">导出路径：</span>
-            <div class="path-value-container">
-              <span class="path-value">{{ exportPath }}</span>
-              <button class="btn btn-primary btn-small" @click="changeExportPath">修改路径</button>
-            </div>
-          </div>
-          
-          <div class="export-buttons">
-            <button class="btn btn-primary" @click="confirmExport" :disabled="isExporting">
-              {{ isExporting ? '导出中...' : '确认导出' }}
-            </button>
-            <button class="btn btn-secondary" @click="cancelExport">取消</button>
-          </div>
-        </div>
-        
-        <!-- 导出进度提示 -->
+        <!-- 处理中：显示进度 -->
         <div v-if="isExporting" class="export-progress">
-          <p>正在导出，请稍候...</p>
+          <p>{{ progressText || '正在处理，请稍候...' }}</p>
+          <p class="sub">请勿操作窗口，预计需几十秒</p>
+        </div>
+        
+        <!-- 处理完成：选择导出文件夹 -->
+        <div v-if="finished && !isExporting" class="export-done">
+          <p>已执行完成！请选择导出文件夹位置，系统将生成 ok.zip</p>
+          <div class="export-buttons">
+            <button class="btn btn-primary" @click="exportOkZip">选择导出位置</button>
+            <button class="btn btn-secondary" @click="cancelExport">取消</button>
+          </div>
         </div>
       </div>
     </div>
@@ -168,7 +160,6 @@
 </template>
 
 <script>
-import { saveExportPath, loadExportPath } from '@/utils/exportPath.js';
 import { loadBackups } from '@/utils/storage.js';
 
 export default {
@@ -190,8 +181,11 @@ export default {
       dragOverIndex: null,
       // 导出相关
       showExportModal: false,
-      exportPath: null,
       isExporting: false,
+      progressText: '',
+      finished: false,
+      zipPath: null,
+      exportResult: null,
       // 新建备份相关
       showBackupModal: false,
       backupName: ''
@@ -316,53 +310,95 @@ export default {
     },
     // 导出相关方法
     showExportDialog() {
-      // 加载已保存的路径
-      this.exportPath = loadExportPath();
       this.showExportModal = true;
-    },
-    async selectExportPath() {
-      if (window.electronAPI) {
-        const path = await window.electronAPI.selectExportPath();
-        if (path) {
-          this.exportPath = path;
-          saveExportPath(path);
-        }
-      }
-    },
-    changeExportPath() {
-      this.exportPath = null;
-      this.selectExportPath();
+      this.isExporting = false;
+      this.progressText = '';
+      this.finished = false;
+      this.zipPath = null;
+      this.exportResult = null;
     },
     cancelExport() {
       this.showExportModal = false;
       this.isExporting = false;
+      this.progressText = '';
+      this.finished = false;
+      this.zipPath = null;
+      this.exportResult = null;
     },
-    async confirmExport() {  
-      if (!this.exportPath) return;
-      
-      this.isExporting = true;
+    async confirmExport() {
+      if (this.sortedItems.length === 0) {
+        alert('请先收藏蓝图！');
+        return;
+      }
+
+      try {
+        if (!window.electronAPI) return;
+        
+        // 选择zip文件
+        const zipPath = await window.electronAPI.selectSaveZip();
+        if (!zipPath) return;
+
+        this.zipPath = zipPath;
+        this.isExporting = true;
+        this.finished = false;
+        this.progressText = '初始化...';
+        
+        // 监听进度
+        window.electronAPI.onSaveEditProgress((payload) => {
+          if (!payload) return;
+          if (payload.stage === 'init') {
+            this.progressText = payload.message || '解压中...';
+          } else if (payload.stage === 'processing') {
+            const step = payload.step || '';
+            this.progressText = `正在执行 ${payload.slot || ''} - ${step}...`;
+          } else if (payload.stage === 'done') {
+            this.progressText = '处理完成，请选择导出文件夹';
+            this.isExporting = false;
+            this.finished = true;
+          } else if (payload.stage === 'error') {
+            this.isExporting = false;
+            this.finished = false;
+            alert('处理失败：' + (payload.error || '未知错误'));
+          }
+        });
+
+        // 处理蓝图导出
+        const result = await window.electronAPI.processBlueprintExport(
+          zipPath,
+          this.sortedItems
+        );
+
+        if (!result || !result.success) {
+          throw new Error(result && result.error ? result.error : '未知错误');
+        }
+
+        // 保存结果，等待用户选择导出文件夹
+        this.exportResult = result;
+      } catch (e) {
+        this.isExporting = false;
+        this.finished = false;
+        alert('处理失败：' + (e && e.message ? e.message : '未知错误'));
+      }
+    },
+    async exportOkZip() {
+      if (!this.exportResult || !window.electronAPI) return;
       
       try {
-        if (window.electronAPI) {
-          const result = await window.electronAPI.exportToGame({
-            exportPath: this.exportPath,
-            // 按当前可见顺序导出
-            collectedItems: this.sortedItems
-          });
-          
-          if (result.success) {
-            this.isExporting = false;
-            this.showExportModal = false;
-            alert('导出成功！');
-          } else {
-            this.isExporting = false;
-            alert('导出失败：' + (result.error || '未知错误'));
-          }
+        const result = await window.electronAPI.exportBlueprintOkZip(
+          this.exportResult.tempRoot,
+          this.exportResult.singleRootName
+        );
+        
+        if (result && result.success) {
+          alert('ok.zip导出成功，请用jksv将其恢复到游戏存档里');
+          this.finished = false;
+          this.showExportModal = false;
+          this.exportResult = null;
+        } else {
+          alert('导出失败：' + (result && result.error ? result.error : '未知错误'));
         }
-      } catch (error) {
-        console.error('Export failed:', error);
-        this.isExporting = false;
-        alert('导出失败，请稍后重试');
+      } catch (e) {
+        alert('导出失败：' + (e && e.message ? e.message : '未知错误'));
       }
     },
     // 新建备份相关方法
