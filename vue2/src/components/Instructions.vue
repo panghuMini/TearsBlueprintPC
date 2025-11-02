@@ -20,30 +20,10 @@
     <div class="section">
       <div class="section-content">
         <p>使用教程视频版</p>
-        <p>使用教程视频b站版：<a href="https://www.bilibili.com/xxxx" target="_blank" class="link">todo:https://www.bilibili.com/xxxx</a></p>
-        <p>因为本人不玩b站，在此特别感谢b站up主：<span class="up-name"> Hahappify-开心</span>  帮忙发的视频，让更多的人可以看到这个软件</p>
+        <p>使用教程视频b站版：<a href="https://v.douyin.com/Nte2aK2bO-8/ g@o.QK" target="_blank" class="link">todo:https://www.bilibili.com/xxxx</a></p>
+        <p>因为本人不玩b站，在此特别感谢b站up主：<span class="up-name"> Hahappify</span>  帮忙发的视频，让更多的人可以看到这个软件</p>
         <p>&nbsp;</p>
-        <p>抖音版：<a href="https://v.douyin.com/tO47-NjlfJY/" target="_blank" class="link">https://v.douyin.com/tO47-NjlfJY/</a></p>
-      </div>
-    </div>
-
-    <!-- 第三部分：使用说明 -->
-    <div class="section">
-      <h4 class="section-title">使用教程文字版：</h4>
-      <div class="section-content">
-        <ol class="content-list">
-          <li>利用存档修改-小白版，把你的游戏进度，改到 解锁12块设计石板+34依盖队设计图的地步</li>
-          <li>在【蓝图列表】单击你喜欢的蓝图收藏，在【我的收藏】里，点【导出到游戏】，把mod文件，导出到你的电脑上；</li>
-          <li>
-            把那个 Game 的文件夹，导入到你的switch目录里；
-            <div class="file-path-block">
-              具体目录路径为：<span class="file-path">/1. SD卡:/atmosphere/contents/0100F2C0115B6000/romfs/Game/</span>
-            </div>
-            <div class="note-text">
-              如果你的 contents 文件夹里，没有 0100F2C0115B6000 文件夹，就自行创建，romfs同理
-            </div>
-          </li>
-        </ol>
+        <p>抖音版：<a href="https://www.douyin.com/video/7567966066698111589" target="_blank" class="link">https://www.douyin.com/video/7567966066698111589</a></p>
       </div>
     </div>
 
@@ -91,9 +71,7 @@
         <div class="faq-item">
           <div class="faq-question">- 这软件，哪些机器可以用？</div>
           <div class="faq-answer">
-            <div class="faq-answer-item">- 直接用：switch硬破机器大气层19的系统</div>
-            <div class="faq-answer-item">- 应该也可以用的：switch的模拟器</div>
-            <div class="faq-answer-item">- 用起来需要些小修改的：switch大气层20的系统，这个系统主要是运存不够，运行王泪的一些mod，会出现黑屏死机情况，需要修改运存。但我还是更推荐大气层19系统玩；</div>
+            <div class="faq-answer-item">- 直接用：switch硬破机器大气层19的系统、switch硬破机器大气层20、pc模拟器</div>
           </div>
         </div>
 
@@ -105,25 +83,9 @@
         </div>
 
         <div class="faq-item">
-          <div class="faq-question">- 我是模拟器 或者 硬破switch20的大气层系统，我很想用，但是使用过程中遇到问题，可以用么？</div>
-          <div class="faq-answer">
-            <div class="faq-answer-item">- 可以，因为作者是用 19大气层玩的，如果你是模拟器 或者 20大气层系统，真的很想用，你进QQ群：1051287661，找我，我会免费做模拟器 和 20大气层系统的支持；</div>
-            <div class="faq-answer-item">- 但是，因为说不定根本没人想用这个，所以我现在自己能玩了，又把软件分享出来做了教程了，我就不花时间鼓捣 模拟器 和 20大气层的支持问题了；</div>
-            <div class="faq-answer-item">- q群如果找不到我，就根据左侧菜单栏的【联系作者】找我</div>
-          </div>
-        </div>
-
-        <div class="faq-item">
           <div class="faq-question">- 我用一个新的王泪账号，用存档修改后，打开 自动构建的蓝图功能，提示：设计图尚未登记</div>
           <div class="faq-answer">
             <div class="faq-answer-item">- 这个主要是你一次究极手功能都没使用过，你打开 背包里的 【左那乌装置】随便拿出一个【翼】+【电风扇】，用究极手组合下，就不会了</div>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">- 我是switch大气层20的虚拟系统，使用后，王国之泪这个游戏打不开了，怎么修复；</div>
-          <div class="faq-answer">
-            <div class="faq-answer-item">- 不用卸载游戏！这是因为20的系统运存变小了，一些王泪mod用不了，你进 <span class="file-path">/1. SD卡:/atmosphere/contents/0100F2C0115B6000/romfs/Game/</span> 目录，把 /Game/ 这个mod目录文件夹删除就行了</div>
           </div>
         </div>
       </div>

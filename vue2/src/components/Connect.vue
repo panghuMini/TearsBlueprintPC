@@ -11,8 +11,8 @@
       <div class="section-content">
         <p></p>
         <ul class="contact-list">
-          <li>因为本人不玩b站，在此特别感谢b站up主：<span class="up-name"> Hahappify-开心</span>  帮忙发的视频，让更多的人可以看到这个软件</li>
-          <li>下面是b站知名up主：<span class="up-name">Hahappify-开心</span>的qq群：1051287661 可以到里面找我反馈优化建议</li>
+          <li>因为本人不玩b站，在此特别感谢b站up主：<span class="up-name"> Hahappify</span>  帮忙发的视频，让更多的人可以看到这个软件</li>
+          <li>下面是b站知名up主：<span class="up-name">Hahappify</span>的qq群：1051287661 可以到里面找我反馈优化建议</li>
         </ul>
       </div>
     </div>

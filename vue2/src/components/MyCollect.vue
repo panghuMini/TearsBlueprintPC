@@ -132,11 +132,41 @@
         <h3>导出到游戏</h3>
         
         <!-- 初始状态：选择zip文件 -->
-        <div v-if="!isExporting && !finished" class="export-first-time">
+        <div v-if="!isExporting && !finished && !showSlotSelector" class="export-first-time">
           <p class="export-tip">请选择你的存档zip压缩包文件</p>
           <div class="export-buttons">
-            <button class="btn btn-primary" @click="confirmExport">选择zip文件</button>
+            <button class="btn btn-primary" @click="selectZipFile">选择zip文件</button>
             <button class="btn btn-secondary" @click="cancelExport">取消</button>
+          </div>
+        </div>
+
+        <!-- 选择存档slot -->
+        <div v-if="showSlotSelector && !isExporting && !finished" class="slot-selector">
+          <p class="export-tip">请选择你要修改的存档：</p>
+          <div class="slot-preview-grid">
+            <div 
+              v-for="slotInfo in slotPreviews" 
+              :key="slotInfo.slot"
+              class="slot-preview-item"
+              :class="{ selected: selectedSlot === slotInfo.slot }"
+              @click="selectSlot(slotInfo.slot)"
+            >
+              <div class="slot-preview-image">
+                <img v-if="slotInfo.preview" :src="slotInfo.preview" :alt="slotInfo.slot" />
+                <div v-else class="no-preview">无预览图</div>
+              </div>
+              <div class="slot-name">{{ slotInfo.slot }}</div>
+            </div>
+          </div>
+          <div class="export-buttons">
+            <button 
+              class="btn btn-primary" 
+              @click="confirmExport" 
+              :disabled="!selectedSlot"
+            >
+              确认选择
+            </button>
+            <button class="btn btn-secondary" @click="cancelSlotSelection">取消</button>
           </div>
         </div>
         
@@ -186,6 +216,9 @@ export default {
       finished: false,
       zipPath: null,
       exportResult: null,
+      slotPreviews: [],
+      showSlotSelector: false,
+      selectedSlot: null,
       // 新建备份相关
       showBackupModal: false,
       backupName: ''
@@ -324,8 +357,20 @@ export default {
       this.finished = false;
       this.zipPath = null;
       this.exportResult = null;
+      this.showSlotSelector = false;
+      this.slotPreviews = [];
+      this.selectedSlot = null;
     },
-    async confirmExport() {
+    cancelSlotSelection() {
+      this.showSlotSelector = false;
+      this.slotPreviews = [];
+      this.selectedSlot = null;
+      this.zipPath = null;
+    },
+    selectSlot(slot) {
+      this.selectedSlot = slot;
+    },
+    async selectZipFile() {
       if (this.sortedItems.length === 0) {
         alert('请先收藏蓝图！');
         return;
@@ -339,8 +384,45 @@ export default {
         if (!zipPath) return;
 
         this.zipPath = zipPath;
+        this.progressText = '正在提取存档预览图...';
+        
+        // 提取预览图
+        const previewResult = await window.electronAPI.extractSlotPreviews(zipPath);
+        
+        if (!previewResult || !previewResult.success) {
+          alert('提取预览图失败：' + (previewResult && previewResult.error ? previewResult.error : '未知错误'));
+          return;
+        }
+
+        if (!previewResult.slots || previewResult.slots.length === 0) {
+          alert('未找到可用的存档slot');
+          return;
+        }
+
+        this.slotPreviews = previewResult.slots;
+        this.showSlotSelector = true;
+        this.progressText = '';
+      } catch (e) {
+        alert('选择文件失败：' + (e && e.message ? e.message : '未知错误'));
+      }
+    },
+    async confirmExport() {
+      if (!this.selectedSlot) {
+        alert('请先选择要修改的存档！');
+        return;
+      }
+
+      if (!this.zipPath) {
+        alert('请先选择zip文件！');
+        return;
+      }
+
+      try {
+        if (!window.electronAPI) return;
+        
         this.isExporting = true;
         this.finished = false;
+        this.showSlotSelector = false;
         this.progressText = '初始化...';
         
         // 监听进度
@@ -364,8 +446,9 @@ export default {
 
         // 处理蓝图导出
         const result = await window.electronAPI.processBlueprintExport(
-          zipPath,
-          this.sortedItems
+          this.zipPath,
+          this.sortedItems,
+          this.selectedSlot
         );
 
         if (!result || !result.success) {
@@ -761,6 +844,71 @@ export default {
   padding: 20px 0;
   color: #409eff;
   font-size: 14px;
+}
+
+.slot-selector {
+  max-width: 800px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.slot-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px 0;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.slot-preview-item {
+  border: 2px solid #ebeef5;
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+  background: white;
+}
+
+.slot-preview-item:hover {
+  border-color: #409eff;
+  box-shadow: 0 2px 12px 0 rgba(64, 158, 255, 0.3);
+}
+
+.slot-preview-item.selected {
+  border-color: #409eff;
+  background: #ecf5ff;
+  box-shadow: 0 2px 12px 0 rgba(64, 158, 255, 0.4);
+}
+
+.slot-preview-image {
+  width: 100%;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f7fa;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.slot-preview-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.slot-preview-image .no-preview {
+  color: #909399;
+  font-size: 14px;
+}
+
+.slot-name {
+  text-align: center;
+  font-size: 14px;
+  color: #303133;
+  font-weight: 500;
 }
 
 .btn-export {

@@ -399,7 +399,6 @@ ipcMain.handle('process-save-zip', async (_event, zipPath) => {
         }},
         { name: 'autoBuild', code: async () => editor.webContents.executeJavaScript(`Promise.resolve(window.lantuTotk.autoBuild && window.lantuTotk.autoBuild())`) },
         { name: 'changeBattery', code: async () => editor.webContents.executeJavaScript(`Promise.resolve(window.lantuTotk.changeBattery && window.lantuTotk.changeBattery(48000))`) },
-        { name: 'openLantu', code: async () => editor.webContents.executeJavaScript(`Promise.resolve(window.lantuTotk.openLantu && window.lantuTotk.openLantu())`) },
         // 确保DOM已渲染后再做材料与设备操作
         { name: 'awaitMaterialsDOM', code: async () => editor.webContents.executeJavaScript(`new Promise((resolve)=>{const check=()=>{if(document.getElementById('container-materials')) return resolve(true); setTimeout(check,100)}; check();})`) },
         { name: 'addMaterials1', code: async () => editor.webContents.executeJavaScript(`Promise.resolve(window.lantuTotk.addMaterials && window.lantuTotk.addMaterials('左纳尼乌姆', 999999))`) },
@@ -442,8 +441,150 @@ ipcMain.handle('process-save-zip', async (_event, zipPath) => {
   }
 })
 
+// 提取zip中所有slot的预览图
+ipcMain.handle('extract-slot-previews', async (_event, zipPath) => {
+  try {
+    if (!zipPath || !fs.existsSync(zipPath)) {
+      throw new Error('ZIP 文件不存在')
+    }
+
+    const { singleRootName } = analyzeZipTopLevel(zipPath)
+    const tempRoot = await extractZipToTemp(zipPath)
+
+    // 根目录用于定位 slot 路径
+    const rootDir = singleRootName && singleRootName !== ''
+      ? path.join(tempRoot, singleRootName)
+      : tempRoot
+
+    const slots = ['slot_00','slot_01','slot_02','slot_03','slot_04','slot_05']
+    const slotPreviews = []
+
+    // 使用编辑器窗口来解析caption.sav并提取预览图（只需初始化一次）
+    let editor = await getEditorWindow()
+    
+    // 等待编辑器完全加载，确保MarcFile和lantuTotk对象可用
+    await editor.webContents.executeJavaScript(`
+      new Promise((resolve) => {
+        const checkReady = () => {
+          if (typeof MarcFile !== 'undefined' && window.lantuTotk) {
+            resolve(true);
+          } else {
+            setTimeout(checkReady, 100);
+          }
+        };
+        checkReady();
+      })
+    `)
+    
+    for (let i = 0; i < slots.length; i++) {
+      const slot = slots[i]
+      const slotDir = path.join(rootDir, slot)
+      const captionPath = path.join(slotDir, 'caption.sav')
+      
+      if (!fs.existsSync(captionPath)) {
+        continue
+      }
+      
+      try {
+        
+        // 直接手动提取图片（不依赖Image对象），转换为base64数据URL
+        const imgDataUrl = await editor.webContents.executeJavaScript(`
+          (() => {
+            return new Promise((resolve, reject) => {
+              try {
+                const fs = require('fs');
+                const captionPath = ${JSON.stringify(captionPath)};
+                if (!fs.existsSync(captionPath)) {
+                  reject(new Error('caption.sav 不存在: ' + captionPath));
+                  return;
+                }
+                const buf = fs.readFileSync(captionPath);
+                const ab = buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength);
+                const marcFile = new MarcFile(ab.byteLength);
+                marcFile.fileName = 'caption.sav';
+                marcFile._u8array = new Uint8Array(ab);
+                marcFile._dataView = new DataView(ab);
+                marcFile.littleEndian = true;
+                
+                // 使用hash 0x63696a32查找jpg偏移
+                // 可以直接读取，或者使用lantuTotk的方法（如果可用）
+                let jpgOffset = 0;
+                
+                // 优先使用lantuTotk的方法查找偏移
+                if (window.lantuTotk && typeof window.lantuTotk.captionReadU32ByHash === 'function') {
+                  jpgOffset = window.lantuTotk.captionReadU32ByHash(marcFile, 0x63696a32);
+                } else {
+                  // 手动查找
+                  for(var i=0x000028; i<0x000001c0; i+=8){
+                    const hash = marcFile.readU32(i);
+                    if(hash === 0x63696a32){
+                      jpgOffset = marcFile.readU32(i+4);
+                      break;
+                    }
+                  }
+                }
+                
+                if (jpgOffset === 0) {
+                  reject(new Error('无法找到图片偏移'));
+                  return;
+                }
+                
+                // 读取jpg大小和数据
+                const jpgSize = marcFile.readU32(jpgOffset);
+                const arrayBuffer = marcFile._u8array.buffer.slice(jpgOffset + 4, jpgOffset + 4 + jpgSize);
+                
+                // 转换为base64数据URL（使用FileReader更可靠）
+                const blob = new Blob([arrayBuffer], {type:'image/jpeg'});
+                const reader = new FileReader();
+                reader.onloadend = function() {
+                  if (reader.result) {
+                    resolve(reader.result);
+                  } else {
+                    reject(new Error('FileReader读取失败'));
+                  }
+                };
+                reader.onerror = function() {
+                  reject(new Error('FileReader读取错误: ' + (reader.error ? reader.error.message : '未知错误')));
+                };
+                reader.readAsDataURL(blob);
+              } catch (e) {
+                reject(e);
+              }
+            });
+          })()
+        `)
+
+        slotPreviews.push({
+          slot: slot,
+          preview: imgDataUrl,
+          hasCaption: true
+        })
+      } catch (e) {
+        // 如果无法提取预览图，也添加到列表中，但标记为无预览图
+        slotPreviews.push({
+          slot: slot,
+          preview: null,
+          hasCaption: false,
+          error: e.message
+        })
+      }
+    }
+
+    // 清理临时目录
+    try {
+      fse.removeSync(tempRoot)
+    } catch (e) {
+      console.warn('清理临时目录失败:', e)
+    }
+
+    return { success: true, slots: slotPreviews }
+  } catch (e) {
+    return { success: false, error: e.message }
+  }
+})
+
 // 处理蓝图导出到游戏的zip文件
-ipcMain.handle('process-blueprint-export', async (_event, zipPath, collectedItems) => {
+ipcMain.handle('process-blueprint-export', async (_event, zipPath, collectedItems, selectedSlot) => {
   try {
     if (!zipPath || !fs.existsSync(zipPath)) {
       throw new Error('ZIP 文件不存在')
@@ -482,23 +623,26 @@ ipcMain.handle('process-blueprint-export', async (_event, zipPath, collectedItem
       }
     }
 
-    for (let i = 0; i < slots.length; i++) {
-      const slot = slots[i]
-      const slotDir = path.join(rootDir, slot)
-      if (!fs.existsSync(slotDir)) {
-        continue
-      }
-      const progressPath = path.join(slotDir, 'progress.sav')
-      if (!fs.existsSync(progressPath)) {
-        continue
-      }
+    // 只处理选中的slot
+    if (!selectedSlot) {
+      throw new Error('未选择要处理的存档slot')
+    }
 
-      sendProgress(null, { stage: 'processing', slot, step: `处理 ${slot}` })
+    const slotDir = path.join(rootDir, selectedSlot)
+    if (!fs.existsSync(slotDir)) {
+      throw new Error(`存档slot不存在: ${selectedSlot}`)
+    }
+    const progressPath = path.join(slotDir, 'progress.sav')
+    if (!fs.existsSync(progressPath)) {
+      throw new Error(`progress.sav 不存在: ${selectedSlot}`)
+    }
 
-      // 每个 slot 独立重置页面
-      editor = await resetEditorWindow()
+    sendProgress(null, { stage: 'processing', slot: selectedSlot, step: `处理 ${selectedSlot}` })
 
-      const steps = [
+    // 重置编辑器窗口
+    editor = await resetEditorWindow()
+
+    const steps = [
         { name: 'i18nPatch', code: async () => editor.webContents.executeJavaScript(`(() => {
             try {
               const extraMap = { Energy_Material_03: '大的左纳尼乌能源' };
@@ -534,7 +678,6 @@ ipcMain.handle('process-blueprint-export', async (_event, zipPath, collectedItem
         { name: 'addMaterials1', code: async () => editor.webContents.executeJavaScript(`Promise.resolve(window.lantuTotk.addMaterials && window.lantuTotk.addMaterials('左纳尼乌姆', 999999))`) },
         { name: 'awaitDevicesDOM', code: async () => editor.webContents.executeJavaScript(`new Promise((resolve)=>{const check=()=>{if(document.getElementById('container-devices')) return resolve(true); setTimeout(check,100)}; check();})`) },
         { name: 'zuonawuAll', code: async () => editor.webContents.executeJavaScript(`Promise.resolve(window.lantuTotk.zuonawuAll && window.lantuTotk.zuonawuAll(888))`) },
-        { name: 'openLantu', code: async () => editor.webContents.executeJavaScript(`Promise.resolve(window.lantuTotk.openLantu && window.lantuTotk.openLantu())`) },
         // 等待蓝图界面加载
         { name: 'awaitAutobuilderDOM', code: async () => editor.webContents.executeJavaScript(`new Promise((resolve)=>{const check=()=>{const select=document.getElementById('select-autobuilder-index'); const input=document.getElementById('input-file-autobuilder-import'); if(select&&input) return resolve(true); setTimeout(check,100)}; check();})`) },
         // 导入蓝图cai文件（01.cai到30.cai）
@@ -545,7 +688,7 @@ ipcMain.handle('process-blueprint-export', async (_event, zipPath, collectedItem
             const caiFilePath = path.join(tempCaiDir, caiFileName)
             if (!fs.existsSync(caiFilePath)) continue
 
-            sendProgress(null, { stage: 'processing', slot, step: `导入蓝图 ${caiFileName}` })
+            sendProgress(null, { stage: 'processing', slot: selectedSlot, step: `导入蓝图 ${caiFileName}` })
 
             // 设置选择器值为blueprintIndex（0-29对应01-30）
             const blueprintIndexValue = blueprintIndex
@@ -621,10 +764,9 @@ ipcMain.handle('process-blueprint-export', async (_event, zipPath, collectedItem
         })()`)}
       ]
 
-      for (const step of steps) {
-        sendProgress(null, { stage: 'processing', slot, step: step.name })
-        await step.code()
-      }
+    for (const step of steps) {
+      sendProgress(null, { stage: 'processing', slot: selectedSlot, step: step.name })
+      await step.code()
     }
 
     // 清理临时cai目录
