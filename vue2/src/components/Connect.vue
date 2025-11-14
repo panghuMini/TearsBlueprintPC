@@ -12,7 +12,7 @@
         <p></p>
         <ul class="contact-list">
           <li>因为本人不玩b站，在此特别感谢b站up主：<span class="up-name"> Hahappify</span>  帮忙发的视频，让更多的人可以看到这个软件</li>
-          <li>下面是b站知名up主：<span class="up-name">Hahappify</span>的qq群：1051287661 可以到里面找我反馈优化建议</li>
+          <li>下面是b站知名up主：<span class="up-name">Hahappify</span>的qq群：1072063540 可以到里面找我反馈优化建议</li>
         </ul>
       </div>
     </div>
@@ -23,7 +23,8 @@
       <div class="section-content">
         <p>如果你遇到软件bug、或者改进建议，请通过以下方式联系作者：</p>
         <ul class="contact-list">
-          <li>qq群：1051287661 找我反馈</li>
+          <li>qq群：1072063540 找我反馈</li>
+          <li>如果q群消息太多，我没看到，也可以加我抖音主页，免费的粉丝群，找我反馈，下面是我的抖音</li>
           <li>我的抖音抖音号是：<span class="highlight">panghuMini</span> 可以给我点个关注么？</li>
           <li>
             <img src="./img/dy.png"  class="qr-code-image" width="300px"/>

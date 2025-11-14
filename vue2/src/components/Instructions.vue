@@ -20,7 +20,7 @@
     <div class="section">
       <div class="section-content">
         <p>使用教程视频版</p>
-        <p>使用教程视频b站版：<a href="https://v.douyin.com/Nte2aK2bO-8/ g@o.QK" target="_blank" class="link">todo:https://www.bilibili.com/xxxx</a></p>
+        <p>使用教程视频b站版：<a href="https://www.bilibili.com/video/BV1JK1EBcEqR/?share_source=copy_web&vd_source=3293a1e0e17f522aafacdea39dca9665" target="_blank" class="link">https://www.bilibili.com/video/BV1JK1EBcEqR/?share_source=copy_web&vd_source=3293a1e0e17f522aafacdea39dca9665</a></p>
         <p>因为本人不玩b站，在此特别感谢b站up主：<span class="up-name"> Hahappify</span>  帮忙发的视频，让更多的人可以看到这个软件</p>
         <p>&nbsp;</p>
         <p>抖音版：<a href="https://www.douyin.com/video/7567973022204693801" target="_blank" class="link">https://www.douyin.com/video/7567973022204693801</a></p>
