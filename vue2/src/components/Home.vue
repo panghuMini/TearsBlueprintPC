@@ -41,15 +41,19 @@
         @backup-created="updateBackupCount"
         @collection-overwritten="handleCollectionOverwritten"
       />
-    
+      
       <!-- 存档修改小白 -->
-      <SaveGameEditDashi v-else-if="activeIndex === 3" />
+      <SaveGameEditXiaobai v-else-if="activeIndex === 3" />
+      <!-- 存档修改小白 -->
+      <SaveGameEditBendan v-else-if="activeIndex === 4" />
+      <!-- 存档修改小白 -->
+      <SaveGameEditDashi v-else-if="activeIndex === 5" />
       
       <!-- 使用说明 -->
-      <Instructions v-else-if="activeIndex === 4" />
+      <Instructions v-else-if="activeIndex === 6" />
       
       <!-- 联系作者 -->
-      <Connect v-else-if="activeIndex === 5" />
+      <Connect v-else-if="activeIndex === 7" />
     </div>
     
     <!-- 最大收藏数量提示弹窗 -->
@@ -57,8 +61,8 @@
       <div class="toast-content">
         <i class="toast-icon">⚠</i>
         <div class="toast-text">
-          <div>最大收藏数量为30，</div>
-          <div>因为历史构建记录，一起只能30个；</div>
+          <div>最大收藏数量为46，</div>
+          <div>因为设计石板12+依盖队设计图纸34，一起只能46个；</div>
           <div>想更多收藏，请参考【备份列表】功能，</div>
           <div>用多套收藏模板切换</div>
         </div>
@@ -72,6 +76,8 @@ import LantuList from './LantuList.vue';
 import MyCollect from './MyCollect.vue';
 import BackupList from './BackupList.vue';
 import BackupDetail from './BackupDetail.vue';
+import SaveGameEditXiaobai from './SaveGameEditXiaobai.vue';
+import SaveGameEditBendan from './SaveGameEditBendan.vue';
 import SaveGameEditDashi from './SaveGameEditDashi.vue';
 import Instructions from './Instructions.vue';
 import Connect from './Connect.vue';
@@ -84,6 +90,8 @@ export default {
     MyCollect,
     BackupList,
     BackupDetail,
+    SaveGameEditXiaobai,
+    SaveGameEditBendan,
     SaveGameEditDashi,
     Instructions,
     Connect
@@ -94,6 +102,8 @@ export default {
         { text: '蓝图列表', count: null },
         { text: '我的收藏', count: 0 },
         { text: '备份列表', count: 0 },
+        { text: '存档修改-小白版', count: null },
+        { text: '存档修改-笨蛋版', count: null },
         { text: '存档修改-大师版', count: null },
         { text: '使用说明', count: null },
         { text: '联系作者', count: null }
@@ -130,7 +140,7 @@ export default {
         this.collectedItems.splice(index, 1);
       } else {
         // 检查是否已达到最大收藏数量
-        if (this.collectedItems.length >= 30) {
+        if (this.collectedItems.length >= 46) {
           this.showMaxCollectionToast = true;
           setTimeout(() => {
             this.showMaxCollectionToast = false;

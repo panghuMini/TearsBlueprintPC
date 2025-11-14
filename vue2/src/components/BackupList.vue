@@ -135,6 +135,7 @@ export default {
         { category: '01垂直上升', name: '风弹II ｜ 仅需9矿达到游戏速度上限_b站搜前面的名字看使用方法_推荐' },
         { category: '01垂直上升', name: '弹簧5个飞天_21矿' },
         { category: '01垂直上升', name: '加农电梯_要站在最中间' },
+        { category: '01垂直上升', name: '火箭热气球_驾驶一下_松开_反复_感觉不好用' },
         { category: '01垂直上升', name: '五连火箭垂直升空' },
         // 02飞行器
         { category: '02飞行器', name: '火箭mk2_推荐' },
@@ -158,6 +159,7 @@ export default {
         // 05空中战机
         { category: '05空中战机', name: '战斗机_蝎子' },
         { category: '05空中战机', name: '杀戮直升机_还行' },
+        { category: '05空中战机', name: '悬浮石固定点位_不能移动_造型2' },
         // 06水里
         { category: '06水里', name: '船_小而美_简单' },
         // 07自动机器人
@@ -169,6 +171,20 @@ export default {
         { category: '09针对杀boss', name: '悬浮固定在boss脸部高度旋转杀' },
         { category: '09针对杀boss', name: '悬浮boss脸_大摆锤版本' },
         { category: '09针对杀boss', name: '速杀属性龙，安全简单' },
+        { category: '09针对杀boss', name: '飞机造型的炸弹花' },
+        // 10有意思的东西
+        { category: '10有意思的东西', name: '火葬配送专车_对着猪猪开_装进来火葬' },
+        { category: '10有意思的东西', name: '猪猪陷阱_需要带魔吉拉面具用苹果把猪猪引过来' },
+        { category: '10有意思的东西', name: '无限产蛋机' },
+        { category: '10有意思的东西', name: '洒水机火箭升空' },
+        { category: '10有意思的东西', name: '悬空洒水机_打水神兽很好用' },
+        { category: '10有意思的东西', name: '水上制冰机_依盖队' },
+        { category: '10有意思的东西', name: '战斗装置_电门_依盖队' },
+        { category: '10有意思的东西', name: '自动烤肉机_激活后_站在上面放肉' },
+        { category: '10有意思的东西', name: '高效捕鱼船' },
+        // 11造型比较好看，没太大使用价值
+        { category: '11造型比较好看，没太大使用价值', name: '直升飞机造型' },
+        { category: '11造型比较好看，没太大使用价值', name: '恐龙_通过一上一下用嘴巴吃小猪_然后电死' }
       ];
 
       try {
