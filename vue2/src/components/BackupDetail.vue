@@ -14,6 +14,15 @@
       <div class="lantu-class-box">
         <div class="lantu-class-header">
           <div class="header-controls">
+            <!-- 覆盖到我的收藏按钮 -->
+            <button 
+              v-if="!isEditMode && backupData.items && backupData.items.length > 0"
+              class="btn btn-overwrite-collection" 
+              @click="showOverwriteCollectionConfirm"
+            >
+              覆盖到我的收藏
+            </button>
+            
             <!-- 新建备份按钮 -->
             <button 
               v-if="backupData.items.length > 1 && !isEditMode"
@@ -108,6 +117,21 @@
       </div>
     </div>
     
+    <!-- 确认覆盖收藏弹窗 -->
+    <div v-if="showOverwriteConfirm" class="delete-confirm-modal">
+      <div class="modal-content">
+        <h3>确认覆盖</h3>
+        <p>此操作将：</p>
+        <p>1. 清空"我的收藏"中的所有项目</p>
+        <p>2. 将当前备份的 {{ backupData.items.length }} 个项目复制到"我的收藏"</p>
+        <p style="color: #f56c6c; margin-top: 10px;">此操作不可撤销，是否确认？</p>
+        <div class="modal-buttons">
+          <button class="btn btn-secondary" @click="showOverwriteConfirm = false">取消</button>
+          <button class="btn btn-danger" @click="confirmOverwriteCollection">确认</button>
+        </div>
+      </div>
+    </div>
+    
     <!-- 新建备份对话框 -->
     <div v-if="showBackupModal" class="backup-modal">
       <div class="modal-content">
@@ -195,7 +219,7 @@
 </template>
 
 <script>
-import { loadBackups, addBackup } from '@/utils/storage.js';
+import { loadBackups, addBackup, saveCollections } from '@/utils/storage.js';
 
 export default {
   name: 'BackupDetail',
@@ -227,6 +251,7 @@ export default {
       showSlotSelector: false,
       selectedSlot: null,
       backupNameNew: '',
+      showOverwriteConfirm: false,
     }
   },
   computed: {
@@ -579,6 +604,35 @@ export default {
       } catch (e) {
         alert('导出失败：' + (e && e.message ? e.message : '未知错误'));
       }
+    },
+    // 覆盖到我的收藏相关
+    showOverwriteCollectionConfirm() {
+      if (!this.backupData || !this.backupData.items || this.backupData.items.length === 0) {
+        alert('备份中没有项目可覆盖');
+        return;
+      }
+      this.showOverwriteConfirm = true;
+    },
+    confirmOverwriteCollection() {
+      try {
+        // 深拷贝备份项目
+        const itemsToSave = JSON.parse(JSON.stringify(this.backupData.items));
+        
+        // 清空并保存收藏
+        const success = saveCollections(itemsToSave);
+        
+        if (success) {
+          alert(`成功覆盖！已将 ${itemsToSave.length} 个项目复制到"我的收藏"`);
+          this.showOverwriteConfirm = false;
+          // 通知父组件更新收藏列表
+          this.$emit('collection-overwritten');
+        } else {
+          alert('覆盖失败，请重试');
+        }
+      } catch (error) {
+        console.error('覆盖收藏失败:', error);
+        alert('覆盖失败：' + (error.message || '未知错误'));
+      }
     }
   }
 }
@@ -650,6 +704,15 @@ export default {
 .btn-create-backup {
   background-color: #67c23a;
   color: white;
+}
+
+.btn-overwrite-collection {
+  background-color: #e6a23c;
+  color: white;
+}
+
+.btn-overwrite-collection:hover {
+  background-color: #ebb563;
 }
 
 .lantu-class-box {

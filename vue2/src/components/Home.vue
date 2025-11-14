@@ -39,6 +39,7 @@
         @return="handleBackupReturn"
         @save-backup="handleSaveBackup"
         @backup-created="updateBackupCount"
+        @collection-overwritten="handleCollectionOverwritten"
       />
     
       <!-- 存档修改小白 -->
@@ -190,6 +191,10 @@ export default {
       }
       // 返回备份列表
       this.handleBackupReturn();
+    },
+    handleCollectionOverwritten() {
+      // 重新加载收藏列表
+      this.loadCollections();
     }
   }
 }
