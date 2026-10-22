@@ -2,7 +2,7 @@
 
 **master | Earlier base branch · 46-slot mod workflow**
 
-[简体中文](README.md) · [GitHub repository](https://github.com/panghuMini/TearsBlueprintPC)
+**English** · [简体中文](README.zh-CN.md) · [GitHub repository](https://github.com/panghuMini/TearsBlueprintPC)
 
 ## 1. What does this tool and branch do?
 
@@ -74,8 +74,8 @@ The application page lists six months of ChatGPT Pro with Codex among the benefi
 
 The following screenshots were provided by the maintainer. They show community participation and hands-on help with setup and blueprint files.
 
-<details>
-<summary>View the four community and support screenshots</summary>
+<details open>
+<summary>Community and support screenshots (click to collapse / expand)</summary>
 
 | Group membership snapshot | In-group troubleshooting |
 | --- | --- |
@@ -89,8 +89,8 @@ The following screenshots were provided by the maintainer. They show community p
 
 These are the five images displayed for **王泪蓝图自由软件.exe** on the [maintainer’s portfolio](http://101.132.34.89:8888/#works). Copies are stored in this repository so viewing them does not depend on that server remaining online.
 
-<details>
-<summary>View all five project and feedback images</summary>
+<details open>
+<summary>Five project and feedback images (click to collapse / expand)</summary>
 
 **1. Windows application overview**
 
