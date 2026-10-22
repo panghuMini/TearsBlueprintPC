@@ -143,3 +143,7 @@ vite.config.ts.timestamp-*
 # Vue2 specific directories
 vue2/node_modules/
 vue2/dist/
+
+# Local test signing credentials (generate locally; never publish)
+certs/private.key
+certs/certificate.pfx
