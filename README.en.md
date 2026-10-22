@@ -68,7 +68,7 @@ The plan is to bring blueprint browsing, selection and ordering to the browser, 
 
 I am preparing a [Codex for Open Source application](https://openai.com/zh-Hans-CN/form/codex-for-oss/) for this project. My main request is **ChatGPT Pro with Codex** to support web development, code improvements, debugging, testing and ongoing maintenance. Both I and this player community would be grateful for that support.
 
-The application page lists six months of ChatGPT Pro with Codex among the benefits for selected maintainers; OpenAI determines selection. **As of this update, the application is still being prepared and reviewed. It has not been submitted, and the project has not received support through this program.** No separate API integration or API-credit usage plan is currently being promised.
+The application page lists six months of ChatGPT Pro with Codex among the benefits for selected maintainers; OpenAI determines selection. **As of this update, the application is still being prepared and reviewed. It has not been submitted, and the project has not received support through this program.**
 
 ### Community use and direct support
 
