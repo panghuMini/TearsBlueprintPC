@@ -1,0 +1,20 @@
+services:
+  tears-blueprint-web:
+    # Reuse the NAS's existing image; run only its Nginx binary.
+    image: sha256:eea288aea229dceebd280a0ed05d6f47f615ed08fa1093e51aa54eeaaf6ff099
+    container_name: tears-blueprint-web
+    entrypoint: /usr/sbin/nginx
+    command: ["-c", "/etc/nginx/tears.conf", "-g", "daemon off;"]
+    user: "1000:1000"
+    restart: unless-stopped
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    tmpfs: ["/tmp:size=32m,mode=1777"]
+    ports: ["192.168.1.45:6219:8080"]
+    volumes:
+      - ./site:/srv/tears:ro
+      - ./nginx.conf:/etc/nginx/tears.conf:ro
+    logging:
+      driver: json-file
+      options: {max-size: "5m", max-file: "2"}

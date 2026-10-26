@@ -1,0 +1,12 @@
+{
+  "url": "http://192.168.1.45:6219/",
+  "container": "tears-blueprint-web",
+  "project_directory": "/vol2/1000/docker-hdd/tears-blueprint-web",
+  "release": "/vol2/1000/docker-hdd/tears-blueprint-web/releases/20261026T053658Z",
+  "archive_sha256": "5550b56f08253def5c3d84112f3da329ce54e072fad19932467837b6de1bbb0c",
+  "files_verified": 3245,
+  "binding": "192.168.1.45:6219:8080",
+  "restart_policy": "unless-stopped",
+  "public_forwarding_added": false,
+  "verified_http_paths": ["/", "/core.js", "/engine-worker.js", "/lib/fflate.js", "/editor/zelda-totk/index.html"]
+}
